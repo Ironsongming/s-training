@@ -27,7 +27,7 @@
 |caps|持久化层操作| 
 |core|业务层|  
 |service|业务接口层|
-|reference|接口层－业务层 连接模型|
+|reference|连接模型|
 |page|接口层|
  
 2.	作用域
