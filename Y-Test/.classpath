@@ -5,6 +5,7 @@
 	<classpathentry combineaccessrules="false" kind="src" path="/X-Common"/>
 	<classpathentry kind="lib" path="/X-Common/lib/jetty-all-bundle-7.6.8.jar"/>
 	<classpathentry kind="lib" path="/X-Common/lib/servlet-api-2.5.jar"/>
-	<classpathentry kind="lib" path="/X-Common/lib/log4j-1.2.15.jar"/>
+	<classpathentry kind="lib" path="/X-Common/lib/lamfire-1.1.jar"/>
+	<classpathentry kind="lib" path="/X-Common/lib/slf4j-api-1.6.6.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
