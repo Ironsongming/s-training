@@ -34,7 +34,7 @@ public abstract class HttpServer {
 	private static final int THREADS_MIN = 100;
 	private static final int THREADS_THRESHOLD = 50; // 当可用线程为此值时，定义为危险，拒绝访问
 	
-	public void setup(String serverRootPath) {
+	public void setup(String serverRootPath) throws Exception {
 		this.serverRootPath = serverRootPath;
 		
 		//处理进程中抛出的一场
@@ -49,6 +49,8 @@ public abstract class HttpServer {
 				}
 			}
 		});
+		
+		setupServer();
 	}
 	
 	protected abstract void setupServer() throws Exception;
@@ -68,13 +70,12 @@ public abstract class HttpServer {
 		});
 		
 		if (httpServer != null) {
-			logger.debug("http server starting up.......");
+			logger.info("http server starting up.......");
 			
 			httpServer.start();
 			httpServer.join();
 			
 		}
-		
 	}
 	
 	public void stopServer() throws Exception{
@@ -94,7 +95,6 @@ public abstract class HttpServer {
 	
 	protected void setupHttpServer(String resourceBase) {
 		logger.debug("ResourceBase: " + resourceBase);
-		
 		String webContext = "/";
 		
 		httpServer = new Server();

@@ -43,8 +43,6 @@ public class TestServer extends HttpServer {
 	public static void main(String[] args) {
 		server = new TestServer();
 		try {
-			logger.debug("[server.root.path]:" + System.getProperty("server.root.path"));
-//			System.out.println("[server.root.path]:" + System.getProperty("server.root.path"));
 			server.setup(System.getProperty("server.root.path"));
 			server.startServer();
 		} catch (Throwable e) {
