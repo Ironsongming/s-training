@@ -1,6 +1,7 @@
 package com.csm.straining.test;
 
 import com.csm.straining.common.http.servlet.ViewPageServlet;
+import com.csm.straining.test.page.TestPage;
 
 
 /**
@@ -16,7 +17,7 @@ public class ActionCenterServlet extends ViewPageServlet {
 	}
 	
 	private void v1() {
-		addViewPage("/test", 1, PLATFORM_COMMON, null);
+		addViewPage("/test", 1, PLATFORM_COMMON, TestPage.class);
 	}
 
 }

@@ -33,7 +33,7 @@ public abstract class ViewPage {
 	
 	protected abstract Object doService();
 	
-	protected void afterDoService() {}
+	protected void afterDoService(Object obj) {}
 	
 	protected abstract void renderResponse(Object obj) throws Exception;
 
@@ -44,7 +44,7 @@ public abstract class ViewPage {
 		if (auth() || !authAutoFail()) {
 			beforeDoService();
 			obj = doService();
-			afterDoService();
+			afterDoService(obj);
 		} else {
 			obj = getAuthFailResult();
 		}
