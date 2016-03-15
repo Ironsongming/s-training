@@ -109,7 +109,7 @@ public abstract class ViewPageServlet extends HttpServlet {
 	
 	protected static void addViewPage(String path, int apiVersion, int platform, Class<? extends ViewPage> cls) {
 		String fullPath = getPath(path, apiVersion, platform);
-		addViewPage(fullPath, apiVersion, platform, cls);
+		addViewPage(fullPath, cls);
 	}
 	
 	private static void addViewPage(String path, Class<? extends ViewPage> cls) {

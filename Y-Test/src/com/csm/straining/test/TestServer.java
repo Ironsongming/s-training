@@ -27,16 +27,18 @@ public class TestServer extends HttpServer {
 		super.setupWebContext(webapp);
 		
 		webapp.addFilter(ViewPageFilter.class, "/*", null);
-		webapp.addServlet(ViewPageServlet.class, "/__s__");
+		webapp.addServlet(ActionCenterServlet.class, "/__s__");
 	}
 	
 	@Override
 	protected String getHttpListenAddress() {
+//		return "127.0.0.1";
 		return Config.getHttpListenHost();
 	}
 	
 	@Override
 	protected int getHttpListenPort() {
+//		return 8080;
 		return Config.getHttpListenPort();
 	}
 	
