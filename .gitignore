@@ -1,5 +1,17 @@
 .metadata/
-
 RemoteSystemsTempFiles/
 
+*/output
+
+*tar.gz
+
+.gitignore
+
 *~
+
+x-common.jar
+y-test.jar
+
+
+
+
