@@ -44,7 +44,7 @@ public abstract class RpcServer<T> {
 		});
 		
 		// 添加关闭钩子
-		Shutdown.shareInstance().addListeners(listener);
+		Shutdown.shareInstance().addListener(listener);
 		
 		// 当前应用配置
 		initApplicationConfig();

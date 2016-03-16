@@ -18,7 +18,7 @@ public class Shutdown {
 	private List<ShutdownListener> listeners = new ArrayList<ShutdownListener>();
 	
 	public synchronized static Shutdown shareInstance() {
-		if (shutdown != null) {
+		if (shutdown == null) {
 			shutdown = new Shutdown();
 			shutdown.addShutdownHook();
 		}
@@ -41,7 +41,7 @@ public class Shutdown {
 		});
 	}
 	
-	public void addListeners(ShutdownListener listener) {
+	public void addListener(ShutdownListener listener) {
 		listeners.add(listener);
 	}
 	
