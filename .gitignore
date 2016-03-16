@@ -1,4 +1,5 @@
 .metadata/
+
 RemoteSystemsTempFiles/
 
 */output
@@ -9,9 +10,14 @@ RemoteSystemsTempFiles/
 
 *~
 
-x-common.jar
-y-test.jar
+*/i-interfacecsm.jar
 
+*/s-core.jar
 
+*/x-common.jar
+
+*/y-test.jar
+
+*/s-test.jar
 
 
