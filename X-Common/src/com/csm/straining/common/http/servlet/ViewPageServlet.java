@@ -81,7 +81,7 @@ public abstract class ViewPageServlet extends HttpServlet {
 				}
 				
 				if (pageCls != null) {
-					viewPageCache.put(path, pageCls);
+					viewPageCache.put(originPath, pageCls);
 					break;
 				}
 			}
