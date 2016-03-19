@@ -6,6 +6,8 @@ import org.slf4j.LoggerFactory;
 import com.csm.straining.common.i.test.TestService;
 import com.csm.straining.common.rpc.RpcServer;
 import com.csm.straining.core.test.TestServiceImpl;
+import com.csm.straining.dataaccess.DbConfig;
+import com.csm.straining.dataaccess.caps.test.TestCaps;
 
 
 /**
@@ -52,8 +54,12 @@ public class TestServiceProvider extends RpcServer<TestService> {
 	}
 	
 	public static void main(String[] args) {
+		
+		DbConfig.ins().init();
+		
 		TestServiceProvider server = TestServiceProvider.sharedInstance();
 		server.start();
+		
 	}
 	
 

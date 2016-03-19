@@ -1,6 +1,7 @@
 package com.csm.straining.core.test;
 
 import com.csm.straining.common.i.test.TestService;
+import com.csm.straining.dataaccess.caps.test.TestCaps;
 
 
 /**
@@ -10,6 +11,7 @@ public class TestServiceImpl implements TestService {
 
 	@Override
 	public String test() {
+		TestCaps.insert();
 		return "TEST";
 	}
 

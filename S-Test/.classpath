@@ -16,5 +16,6 @@
 	<classpathentry kind="lib" path="/X-Common/lib/netty-3.2.5.Final.jar"/>
 	<classpathentry kind="lib" path="/X-Common/lib/zkclient-0.1.jar"/>
 	<classpathentry kind="lib" path="/X-Common/lib/zookeeper-3.4.5.jar"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/X-DataAccess"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>

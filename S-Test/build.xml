@@ -34,6 +34,7 @@
 			<zipfileset dir="../X-Common" includes="x-common.jar" prefix="lib"/>
 			<zipfileset dir="../S-Core" includes="s-core.jar" prefix="lib"/>
 			<zipfileset dir="../I-Interface" includes="i-interfacecsm.jar" prefix="lib"/>
+			<zipfileset dir="../X-DataAccess" includes="x-dataaccess.jar" prefix="lib"/>
 			
 			
 			<zipfileset dir="../X-Common/lib" includes="jackson-all-1.7.1.jar" prefix="lib"/>
@@ -49,7 +50,9 @@
 			<zipfileset dir="../X-Common/lib" includes="zookeeper-3.4.5.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="dubbo-2.5.3.jar" prefix="lib"/>
 			
-			
+			<!-- mysql -->
+			<zipfileset dir="../X-Common/lib" includes="mybatis-3.2.1.jar" prefix="lib"/>
+			<zipfileset dir="../X-Common/lib" includes="mysql-connector-java-5.1.22-bin.jar" prefix="lib"/>
 			
 
 
