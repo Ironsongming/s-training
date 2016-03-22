@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<project name="x-cache" basedir="." default="zip">
+	<property name="SrcDir" location="src" />
+	<property name="ClassesDir" location="output" />
+	<property name="BuildDir" location="." />
+	<property name="BuildFile" location="${BuildDir}/x-cache.jar" />
+	
+	<path id="classpath">
+		<fileset dir="${LibDir}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+	
+	<target name="init">
+		<mkdir dir="${BuildDir}"/>
+		<delete file="${BuildFile}" />
+	</target>
+	
+    <target name="zip" depends="init">
+        <jar destfile="${BuildFile}" filesetmanifest="mergewithoutmain">
+            <fileset dir="${ClassesDir}">
+            </fileset>
+        </jar>
+    </target>
+	
+	
+</project>
