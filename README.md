@@ -13,6 +13,7 @@
 3. [httpsqs 1.7](http://zyan.cc/httpsqs_1_2)
 4. [Tomcat 8.0](http://tomcat.apache.org)
 5. [nginx 1.8](http://nginx.org)
+6. [zookeeper 3.4.6](http://zookeeper.apache.org)
 
 
 ####<h4 id = "code_framework">代码概要架构<h4>
