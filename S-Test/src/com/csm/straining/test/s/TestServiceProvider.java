@@ -3,6 +3,7 @@ package com.csm.straining.test.s;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.csm.strainging.cache.RedisConfig;
 import com.csm.straining.common.i.test.TestService;
 import com.csm.straining.common.rpc.RpcServer;
 import com.csm.straining.core.test.TestServiceImpl;
@@ -56,6 +57,7 @@ public class TestServiceProvider extends RpcServer<TestService> {
 	public static void main(String[] args) {
 		
 		DbConfig.ins().init();
+		RedisConfig.ins().init();
 		
 		TestServiceProvider server = TestServiceProvider.sharedInstance();
 		server.start();

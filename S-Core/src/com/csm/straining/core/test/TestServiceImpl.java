@@ -1,5 +1,6 @@
 package com.csm.straining.core.test;
 
+import com.csm.strainging.cache.impl.test.TestCache;
 import com.csm.straining.common.i.test.TestService;
 import com.csm.straining.dataaccess.caps.test.TestCaps;
 
@@ -12,6 +13,7 @@ public class TestServiceImpl implements TestService {
 	@Override
 	public String test() {
 		TestCaps.insert();
+		TestCache.set("chensongming");
 		return "TEST";
 	}
 
