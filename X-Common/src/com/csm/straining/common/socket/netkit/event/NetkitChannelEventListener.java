@@ -11,7 +11,7 @@ import com.csm.straining.common.socket.netkit.message.Message;
  */
 public interface NetkitChannelEventListener extends EventListener {
 	
-	void open(ChannelEvent channelEvent);
+	void onOpen(ChannelEvent channelEvent);
 	
 	void onConnected(ChannelEvent channelEvent);
 	

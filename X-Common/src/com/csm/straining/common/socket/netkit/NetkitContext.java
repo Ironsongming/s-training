@@ -77,7 +77,7 @@ public class NetkitContext {
 		return Collections.unmodifiableList(this.actionFilters);
 	}
 	
-	public void registerAction(int funtionID, Class<Action> clazz) {
+	public void registerAction(int funtionID, Class clazz) {
 		this.registedActions.put(funtionID, clazz);
 	}
 	

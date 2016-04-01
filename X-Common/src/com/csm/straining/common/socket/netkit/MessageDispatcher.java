@@ -8,6 +8,7 @@ import java.util.Map;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.csm.straining.common.socket.netkit.exception.ActionException;
 import com.csm.straining.common.socket.netkit.message.Message;
 import com.lamfire.utils.ObjectFactory;
 
@@ -37,6 +38,12 @@ public class MessageDispatcher {
 			action.setSession(session);
 			Iterator<ActionFilter> it = null;
 			List<ActionFilter> afs = context.getActionFilterList();
+			
+			if (afs != null) {
+				it = afs.iterator();
+			}
+			
+			executeAction(it, action, message);
 			
 		} catch (Exception e) {
 			logger.error(e.getMessage(), e);
@@ -73,4 +80,8 @@ public class MessageDispatcher {
 		this.actionCache.put(messageID, action);
 	}
 	
+	private synchronized void executeAction(Iterator<ActionFilter> it, Action action, Message message) throws ActionException {
+		this.chain.setIterator(it);
+		this.chain.doChain(action, message);
+	}
 }

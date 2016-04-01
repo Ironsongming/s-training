@@ -73,6 +73,10 @@ public class Session implements MessageSendable{
 	
 	public void onRecvMessage(Message message) {
 		this.lastCommunicationTime = System.currentTimeMillis();
+		
+		MessageTask task = createMessageTask(this.dispatcher, message);
+		getContext().getWorkerExecutor().submit(task);
+		
 	}
 	
 	@Override

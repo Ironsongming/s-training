@@ -22,7 +22,7 @@ public class NetkitServer {
 	private NetkitContext context;
 	private String bindHost = "0.0.0.0";
 	
-	private int port = 8000;
+	private int port = 7200;
 	private int maxConnections = 10000;
 	private ServerBootstrap bootstrap = null;
 	private ChannelFactory channelFactory = null;

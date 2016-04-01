@@ -21,20 +21,29 @@ public class NetKitProtocolDecoder extends FrameDecoder {
 	protected Object decode(ChannelHandlerContext ctx, Channel channel,
 			ChannelBuffer source) throws Exception {
 
+		logger.info("NetKitProtocolDecoder.decode");
+		
 		if (source.readableBytes() < 12) {
-			logger.debug("source.readableBytes < Message.headerSize");
+			logger.info("source.readableBytes < Message.headerSize");
 			return null;
 		}
 		
 		source.markReaderIndex();
+		
+		logger.info("source.readableBytes" +  source.readableBytes());
 		
 		try {
 			int contentLen = source.readInt();
 			int messageID = source.readInt();
 			int version = source.readInt();
 			
+			logger.info("contentLen : " + contentLen);
+			logger.info("messageID : " + messageID);
+			logger.info("version : " + version);
+			logger.info("source.readableBytes" +  source.readableBytes());
+			
 			if (source.readableBytes() < contentLen) {
-				logger.debug("source.readableBytes < contentLen");
+				logger.info("source.readableBytes < contentLen");
 				source.resetReaderIndex();
 				return null;
 			}
@@ -44,7 +53,7 @@ public class NetKitProtocolDecoder extends FrameDecoder {
 			
 			return new Message(messageID, version, data);
 		} catch (Exception e) {
-			logger.error(e.getMessage(), e);
+			logger.info(e.getMessage(), e);
 		}
 		
 		return null;
