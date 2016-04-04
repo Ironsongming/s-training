@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="zip" name="y-socket">
+<project basedir="." default="zip" name="y-repeater">
 	<target name="clean">
 		<delete file="${ant.project.name}.jar"></delete>
 		<delete file="${ant.project.name}.tar.gz"></delete>
@@ -44,6 +44,7 @@
 			<zipfileset dir="../X-Common/lib" includes="slf4j-log4j12-1.6.6.jar" prefix="lib" />
 			
 			<zipfileset dir="../X-RepeaterClient" includes="x-repeaterclient.jar" prefix="lib" />
+			
 						
 		</tar>
 	</target>

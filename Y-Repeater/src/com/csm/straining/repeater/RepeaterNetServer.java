@@ -1,4 +1,4 @@
-package com.csm.straining.socket;
+package com.csm.straining.repeater;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -9,27 +9,24 @@ import com.csm.straining.common.socket.server.NetServer;
 import com.csm.straining.common.socket.server.listener.ConnectionEventListener;
 import com.csm.straining.common.socket.server.listener.SessionClosedEventListener;
 import com.csm.straining.common.socket.server.listener.SessionCreatedEventListener;
-import com.csm.straining.repeater.client.MessageRepeaterClient;
+import com.csm.straining.repeater.action.TestAction;
 import com.csm.straining.repeater.client.RepeaterCode;
-import com.csm.straining.socket.action.TestAction;
-import com.csm.straining.socket.cons.MessageCode;
-import com.csm.straining.socket.filter.MessageFilter;
 
 
 /**
  * @author chensongming
  */
-public class MessageNetServer extends NetServer{
+public class RepeaterNetServer extends NetServer{
 
-	private static final Logger logger = LoggerFactory.getLogger(MessageNetServer.class);
+	private static final Logger logger = LoggerFactory.getLogger(RepeaterNetServer.class);
 	
-	private MessageNetServer() {
+	private RepeaterNetServer() {
 		
 	}
 	
-	private static MessageNetServer instance = new MessageNetServer();
+	private static RepeaterNetServer instance = new RepeaterNetServer();
 	
-	public static MessageNetServer ins() {
+	public static RepeaterNetServer ins() {
 		return instance;
 	}
 	
@@ -38,17 +35,11 @@ public class MessageNetServer extends NetServer{
 	@Override
 	protected void setupServer() throws Exception {
 		
-		// 登录中继服务器
-		MessageRepeaterClient.ins().setup();
-		MessageRepeaterClient.ins().startClient();
 	}
 	
 	@Override
 	protected void setupNetContext(NetkitContext context) {
 		logger.info("setup net context");
-		
-		// 添加过滤器
-		context.addActionFilter(new MessageFilter());
 		
 		// 注册Action
 		registerAction(context);
@@ -62,7 +53,7 @@ public class MessageNetServer extends NetServer{
 	}
 	
 	private void registerAction(NetkitContext context) {
-		context.registerAction(MessageCode.TestPID.REQUEST, TestAction.class);
+		context.registerAction(RepeaterCode.TestPID.REQUEST, TestAction.class);
 	}
 	
 	@Override
@@ -76,7 +67,7 @@ public class MessageNetServer extends NetServer{
 	}
 	
 	public static void main(String[] args) {
-		MessageNetServer server = ins();
+		RepeaterNetServer server = ins();
 		try {
 			server.setup();
 			server.startServer();

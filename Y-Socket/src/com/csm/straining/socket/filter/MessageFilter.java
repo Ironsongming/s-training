@@ -24,7 +24,6 @@ public class MessageFilter implements ActionFilter{
 		
 		
 		actionChain.doChain(action, message);
-			
 	}
 
 }
