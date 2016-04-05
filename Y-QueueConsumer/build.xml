@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="zip" name="s-test">
+<project basedir="." default="zip" name="y-queueconsumer">
 	<target name="clean">
 		<delete file="${ant.project.name}.jar">
 		</delete>
@@ -32,40 +32,26 @@
 			<zipfileset dir="." includes="${ant.project.name}.jar" prefix="lib" />
 
 			<zipfileset dir="../X-Common" includes="x-common.jar" prefix="lib"/>
-			<zipfileset dir="../S-Core" includes="s-core.jar" prefix="lib"/>
-			<zipfileset dir="../I-Interface" includes="i-interfacecsm.jar" prefix="lib"/>
-			<zipfileset dir="../X-DataAccess" includes="x-dataaccess.jar" prefix="lib"/>
-			<zipfileset dir="../X-Cache" includes="x-cache.jar" prefix="lib"/>
 			<zipfileset dir="../X-Queue" includes="x-queue.jar" prefix="lib"/>
-			
-			
+						
 			<zipfileset dir="../X-Common/lib" includes="jackson-all-1.7.1.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="lamfire-1.1.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="log4j-1.2.15.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="slf4j-api-1.6.6.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="slf4j-log4j12-1.6.6.jar" prefix="lib"/>
 			
-			<!-- zookeeper -->
-			<zipfileset dir="../X-Common/lib" includes="javassist-3.15.0-GA.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="netty-3.2.5.Final.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="zkclient-0.1.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="zookeeper-3.4.5.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="dubbo-2.5.3.jar" prefix="lib"/>
-			
-			<!-- mysql -->
-			<zipfileset dir="../X-Common/lib" includes="mybatis-3.2.1.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="mysql-connector-java-5.1.22-bin.jar" prefix="lib"/>
-			
-			<!-- redis -->
-			<zipfileset dir="../X-Common/lib" includes="jedis_2.5.2.jar" prefix="lib"/>
-			<zipfileset dir="../X-Common/lib" includes="commons-pool2-2.2.jar" prefix="lib"/>
-
 			<!-- queue -->
 			<zipfileset dir="../X-Common/lib" includes="commons-codec-1.6.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="commons-logging-1.1.3.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="httpclient-4.3.5.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="httpcore-4.3.2.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="commons-httpclient-3.0.1.jar" prefix="lib"/>
+			
+			
+					
+
+
+
 
 		</tar>
 	</target>

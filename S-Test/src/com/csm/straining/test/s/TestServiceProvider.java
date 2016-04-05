@@ -9,6 +9,7 @@ import com.csm.straining.common.rpc.RpcServer;
 import com.csm.straining.core.test.TestServiceImpl;
 import com.csm.straining.dataaccess.DbConfig;
 import com.csm.straining.dataaccess.caps.test.TestCaps;
+import com.csm.straining.queue.HttpsqsConfig;
 
 
 /**
@@ -58,6 +59,7 @@ public class TestServiceProvider extends RpcServer<TestService> {
 		
 		DbConfig.ins().init();
 		RedisConfig.ins().init();
+		HttpsqsConfig.ins().init();
 		
 		TestServiceProvider server = TestServiceProvider.sharedInstance();
 		server.start();
