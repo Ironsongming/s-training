@@ -23,3 +23,5 @@ RemoteSystemsTempFiles/
 /mybatis-generator-core-1.3.2-csm.jar
 
 /db_test.xml
+/Y-TestSocket/
+/Y-TestSocketServer/
