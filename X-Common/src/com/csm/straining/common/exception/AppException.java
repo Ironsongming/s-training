@@ -4,14 +4,23 @@ package com.csm.straining.common.exception;
 /**
  * @author chensongming
  */
-public class ParamVaildException extends Exception {
-
-	private static final long serialVersionUID = 5929469788396601593L;
+public class AppException extends Exception{
 	
+	private static final long serialVersionUID = -1864251794212999874L;
 	private int code;
 	private String msg;
 
-	public ParamVaildException(int code, String msg) {
+	public AppException(int code) {
+		super();
+		this.code = code;
+	}
+	
+	public AppException(String msg) {
+		super();
+		this.msg = msg;
+	}
+	
+	public AppException(int code, String msg) {
 		super();
 		this.code = code;
 		this.msg = msg;
@@ -29,5 +38,5 @@ public class ParamVaildException extends Exception {
 	public String toString() {
 		return "[" + msg + "] " + code;
 	}
-
+	
 }

@@ -4,6 +4,7 @@ import java.io.UnsupportedEncodingException;
 import java.util.Map;
 
 import com.csm.straining.common.cons.Status;
+import com.csm.straining.common.exception.AppException;
 import com.lamfire.utils.PropertiesUtils;
 
 
@@ -31,10 +32,36 @@ public class ErrorStatus extends ResponseStatus {
 			try {
 				this.msg = new String(this.msg.getBytes("ISO-8859-1"), "UTF-8");
 			} catch (UnsupportedEncodingException e) {
-				
 			}
 		}
 	}
+	
+	public ErrorStatus(AppException e) {
+		setStatus(Status.RespStatus.FAIL);
+		
+		this.code = e.getCode();
+		
+		switch (this.code) {
+		case 0:
+		case 104:
+			this.msg = e.getMsg();
+			break;
+
+		default:
+			this.msg = prop.get(e);
+			break;
+		}
+	}
+	
+	public int getCode() {
+		return code;
+	}
+	
+	public String getMsg() {
+		return msg;
+	}
+	
+	
 	
 
 }
