@@ -11,5 +11,6 @@
 	<classpathentry kind="lib" path="/X-Common/lib/mysql-connector-java-5.1.22-bin.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/X-Common"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/I-Interface"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>

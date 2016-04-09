@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project name="s-core" basedir="." default="zip">
+<project name="x-core" basedir="." default="zip">
 	<property name="SrcDir" location="src" />
 	<property name="ClassesDir" location="output" />
 	<property name="BuildDir" location="." />

@@ -14,6 +14,10 @@ public class CoreException extends Exception {
 	
 	private int type;
 	
+	public int getType() {
+		return type;
+	}
+	
 	public CoreException(int type) {
 		super();
 		this.type = type;

@@ -44,6 +44,7 @@ public class ErrorStatus extends ResponseStatus {
 		switch (this.code) {
 		case 0:
 		case 104:
+			this.code = 104;
 			this.msg = e.getMsg();
 			break;
 

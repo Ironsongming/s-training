@@ -7,5 +7,7 @@ package com.csm.strainging.cache;
 public class RedisNames {
 	
 	public static String TEST = "test";
+	
+	public static String SESSION = "session";
 
 }

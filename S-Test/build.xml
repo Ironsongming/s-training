@@ -32,7 +32,7 @@
 			<zipfileset dir="." includes="${ant.project.name}.jar" prefix="lib" />
 
 			<zipfileset dir="../X-Common" includes="x-common.jar" prefix="lib"/>
-			<zipfileset dir="../S-Core" includes="s-core.jar" prefix="lib"/>
+			<zipfileset dir="../X-Core" includes="x-core.jar" prefix="lib"/>
 			<zipfileset dir="../I-Interface" includes="i-interfacecsm.jar" prefix="lib"/>
 			<zipfileset dir="../X-DataAccess" includes="x-dataaccess.jar" prefix="lib"/>
 			<zipfileset dir="../X-Cache" includes="x-cache.jar" prefix="lib"/>

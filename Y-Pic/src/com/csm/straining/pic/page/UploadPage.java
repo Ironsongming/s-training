@@ -39,7 +39,7 @@ public class UploadPage extends JsonViewPage {
 				throw new ParamVaildException(101, "file");
 			}
 			
-			return PicService.save(is, suffix);
+			return PicService.save2(is, suffix);
 			
 		} catch (ParamVaildException e) {
 			logger.debug("[UploadPage ParamVaildException]", e);

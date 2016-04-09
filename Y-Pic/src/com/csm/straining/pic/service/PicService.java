@@ -53,20 +53,23 @@ public class PicService {
 			
 			if (res) {
 				resp.url =  ImageUtil.getLoadPath(fid + "." + suffix);
+				resp.fileName = fid + "." + suffix;
 			} else {
 				throw new AppException("上存图片失败");
 			}
 			
 		} catch (AppException e) {
+			logger.debug("[PicService] save : " + e);
 			throw e;
 		} catch (Exception e) {
+			logger.debug("[PicService] save : " + e);
 			throw new CoreException(CoreException.UPLOAD, e.getMessage());
 		}
 		
 		return resp;
 	}
 	
-	public synchronized static UploadResp save2(InputStream is, String suffix) {
+	public synchronized static UploadResp save2(InputStream is, String suffix) throws AppException {
 		
 		UploadResp resp = new UploadResp();
 		
@@ -90,8 +93,10 @@ public class PicService {
 			}
 			
 			resp.url = ImageUtil.getLoadPath(fid + "." + suffix);
+			resp.fileName = fid + "." + suffix;
 		} catch (IOException e) {
-			e.printStackTrace();
+			logger.debug("[PicService] save2 : " + e);
+			throw new AppException("上存图片失败");
 		} finally {
 			try {
 				if (fos != null) {

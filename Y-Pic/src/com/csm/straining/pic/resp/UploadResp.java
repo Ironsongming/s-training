@@ -9,5 +9,6 @@ import com.csm.straining.common.model.info.common.ResponseStatus;
 public class UploadResp extends ResponseStatus{
 	
 	public String url;
+	public String fileName;
 
 }
