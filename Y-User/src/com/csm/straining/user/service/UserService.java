@@ -4,6 +4,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.csm.strainging.cache.impl.session.SessionKeyCache;
+import com.csm.strainging.cache.impl.session.SessionOfflineKeyCache;
 import com.csm.strainging.cache.impl.user.UserInfoCache;
 import com.csm.strainging.cache.support.UserCacheSupport;
 import com.csm.straining.common.exception.AppException;
@@ -66,7 +67,7 @@ public class UserService {
 		String oldKey = UserInfoCache.getSessionKey(userID);
 		if (null != oldKey) {
 			SessionKeyCache.del(oldKey);
-//			forceOldKeyLogout(userID, oldKey);
+			SessionOfflineKeyCache.setAndExpire(oldKey, userID);
 		}
 		
 		UserInfoCache.setSessionKey(userID, sessionKey);
@@ -74,8 +75,5 @@ public class UserService {
 		return sessionKey;
 	}
 	
-//	private static void forceOldKeyLogout(long userID, String offlineKey) {
-//		
-//	}
 
 }
