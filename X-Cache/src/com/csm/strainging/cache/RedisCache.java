@@ -97,11 +97,11 @@ public class RedisCache {
 	}	
 	
 	/** hash key **/
-	public void hget(String key, String field) {
+	public String hget(String key, String field) {
 		JedisPool jp = rp.getMaster();
 		Jedis jedis = jp.getResource();
 		try {
-			jedis.hget(key, field);
+			return jedis.hget(key, field);
 		} catch (Exception e) {
 			jp.returnBrokenResource(jedis);
 			jedis = null;

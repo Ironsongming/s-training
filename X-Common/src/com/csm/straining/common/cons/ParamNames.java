@@ -21,6 +21,10 @@ public class ParamNames {
 	 */
 	public static final String PLATFORM = "platform";
 	
+	/**
+	 * 登录key
+	 */
+	public static final String KEY = "key";
 	
 	
 }

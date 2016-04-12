@@ -26,7 +26,7 @@ public class PhoneLoginPage extends JsonViewPage {
 			String password = getParamStringRequired("password");
 			
 			
-			return UserService.userCreateResp(phone, password);
+			return UserService.phoneLoginResp(phone, password);
 		} catch (ParamVaildException e) {
 			logger.debug("[PhoneLoginPage] ParamVaildException :", e);
 			return new ParamErrorStatus(e.getCode(), e.getMsg());

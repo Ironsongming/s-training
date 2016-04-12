@@ -8,10 +8,10 @@ import com.csm.strainging.cache.RedisNames;
 /**
  * @author chensongming
  */
-public class SessionKeyCacheSupport {
+public class UserCacheSupport {
 	
 	public static RedisCache getCache() {
-		return RedisConfig.ins().getRedisCache(RedisNames.SESSION);
+		return RedisConfig.ins().getRedisCache(RedisNames.USER);
 	}
 
 }

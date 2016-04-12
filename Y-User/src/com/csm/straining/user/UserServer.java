@@ -4,6 +4,7 @@ import org.eclipse.jetty.webapp.WebAppContext;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import com.csm.strainging.cache.RedisConfig;
 import com.csm.straining.common.http.filter.ViewPageFilter;
 import com.csm.straining.common.http.server.HttpServer;
 import com.csm.straining.common.http.servlet.ViewPageServlet;
@@ -45,6 +46,9 @@ public class UserServer extends HttpServer {
 	public static void main(String[] args) {
 		server = new UserServer();
 		try {
+			
+			RedisConfig.ins().init();
+			
 			server.setup(System.getProperty("server.root.path"));
 			server.startServer();
 		} catch (Throwable e) {

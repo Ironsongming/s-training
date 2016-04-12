@@ -9,5 +9,6 @@ import com.csm.straining.common.model.info.common.ResponseStatus;
 public class UserCreateResp extends ResponseStatus{
 	
 	public String key;
+	public long userID;
 
 }

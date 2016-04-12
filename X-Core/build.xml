@@ -3,7 +3,7 @@
 	<property name="SrcDir" location="src" />
 	<property name="ClassesDir" location="output" />
 	<property name="BuildDir" location="." />
-	<property name="BuildFile" location="${BuildDir}/s-core.jar" />
+	<property name="BuildFile" location="${BuildDir}/x-core.jar" />
 	
 	<path id="classpath">
 		<fileset dir="${LibDir}">

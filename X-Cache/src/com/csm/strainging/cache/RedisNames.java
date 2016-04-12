@@ -10,4 +10,6 @@ public class RedisNames {
 	
 	public static String SESSION = "session";
 
+	public static String USER = "user";
+
 }

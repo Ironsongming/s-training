@@ -7,7 +7,7 @@ import com.lamfire.utils.StringUtils;
 /**
  * @author chensongming
  */
-public class SessionKeyCache extends SessionCacheSupport {
+public class SessionOfflineKeyCache extends SessionCacheSupport {
 	
 	private static final int EXPIRE = 60 * 60 * 3; // 3 hour
 	
@@ -27,11 +27,13 @@ public class SessionKeyCache extends SessionCacheSupport {
 		getCache().del(getKey(sessionKey));
 	}
 	
-	private static String getKey(String sessionKey) {
-		return "sk:" + sessionKey;
+	public static boolean exists(String sessionKey) {
+		return get(sessionKey) > 0;
 	}
 	
-	
+	private static String getKey(String sessionKey) {
+		return "sk:offline:" + sessionKey;
+	}
 	
 	
 

@@ -33,6 +33,7 @@
 
 			<zipfileset dir="../X-Common" includes="x-common.jar" prefix="lib"/>
 			<zipfileset dir="../I-Interface" includes="i-interfacecsm.jar" prefix="lib"/>
+			<zipfileset dir="../X-Cache" includes="x-cache.jar" prefix="lib"/>
 			
 			
 			<zipfileset dir="../X-Common/lib" includes="jetty-all-bundle-7.6.8.jar" prefix="lib"/>
@@ -50,6 +51,9 @@
 			<zipfileset dir="../X-Common/lib" includes="zookeeper-3.4.5.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="dubbo-2.5.3.jar" prefix="lib"/>
 			
+			<!-- redis -->
+			<zipfileset dir="../X-Common/lib" includes="jedis_2.5.2.jar" prefix="lib"/>
+			<zipfileset dir="../X-Common/lib" includes="commons-pool2-2.2.jar" prefix="lib"/>
 
 
 
