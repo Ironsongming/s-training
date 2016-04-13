@@ -19,5 +19,17 @@ public class SessionServerCache extends SessionCacheSupport{
 	public static void delByServerID(int serverID) {
 		getCache().zremrangeByScore(getKey(), serverID, serverID);
 	}
+	
+	public static void delByUserID(long userID) {
+		getCache().zrem(getKey(), Long.toString(userID));
+	}
+	
+	public static int getServerID(long userID) {
+		Double d = getCache().zscore(getKey(), Long.toString(userID));
+		if (d != null) {
+			return d.intValue();
+		}
+		return 0;
+	}
 
 }

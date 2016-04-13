@@ -75,6 +75,7 @@ public abstract class RepeaterClient extends NetkitClient {
 		
 		Map<String, Object> loginBean = new HashMap<String, Object>();
 		loginBean.put("repeaterClientID", getServerID());
+		loginBean.put("repeaterClientType", getServerType());
 		Message loginMessage = MessageUtil.getMessage(RepeaterCode.LoginPID.REQUEST, JSON.toJsonString(loginBean));
 		try {
 			session.sendMessage(loginMessage);
@@ -130,6 +131,8 @@ public abstract class RepeaterClient extends NetkitClient {
 	}
 	
 	protected abstract int getServerID();
+	
+	protected abstract String getServerType();
 	
 	protected String getRepeaterHost() {
 		return "127.0.0.1";

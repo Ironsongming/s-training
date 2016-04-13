@@ -58,12 +58,13 @@ public abstract class ActionSupport extends Action {
 	
 	protected Integer getParamsInt(String key, Integer defaultVal) {
 		Object val = this.paramsMap.get(key);
-		return val instanceof String ? (Integer) val : defaultVal;
+		
+		return val instanceof String || val instanceof Integer ? (Integer) val : defaultVal;
 	}
 	
 	protected Long getParamsLong(String key, Long defaultVal) {
 		Object val = this.paramsMap.get(key);
-		return val instanceof String ? (Long) val : defaultVal;
+		return val instanceof String || val instanceof Long ? (Long) val : defaultVal;
 	}
 	
 	protected String getParamsString(String key) {

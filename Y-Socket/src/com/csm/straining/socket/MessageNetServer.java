@@ -17,6 +17,7 @@ import com.csm.straining.repeater.client.RepeaterCode;
 import com.csm.straining.socket.action.HeartbeatAction;
 import com.csm.straining.socket.action.LoginAction;
 import com.csm.straining.socket.action.TestAction;
+import com.csm.straining.socket.action.repeater.ForceOfflineAction;
 import com.csm.straining.socket.cons.MessageCode;
 import com.csm.straining.socket.filter.MessageFilter;
 
@@ -50,8 +51,12 @@ public class MessageNetServer extends NetServer{
 		SessionServerCache.delByServerID(MessageRepeaterClient.ins().getServerID());
 
 		
+		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.ForceOfflinePushPID.REQUEST, ForceOfflineAction.class);
+		
 		// 登录中继服务器
 		MessageRepeaterClient.ins().setup();
+		
+		
 		MessageRepeaterClient.ins().startClient();
 		
 		
@@ -87,6 +92,14 @@ public class MessageNetServer extends NetServer{
 			oldSession.close();
 		}
 		userSessionGroup.add(userID, session);
+	}
+	
+	public Session getUserSession(long userID) {
+		return userSessionGroup.get(userID);
+	}
+	
+	public void removeUserSession(Session session) {
+		userSessionGroup.remove(session);
 	}
 	
 	@Override

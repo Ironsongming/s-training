@@ -20,5 +20,13 @@ public class RepeaterCode {
 		public static final int REQUEST = 11003;
 		public static final int SUCCESS = 12003;
 	}
+	
+	public interface ForceOfflineSendPID {
+		public static final int REQUEST = 11004;
+	}
+	
+	public interface ForceOfflinePushPID {
+		public static final int REQUEST = 11005;
+	}
 
 }

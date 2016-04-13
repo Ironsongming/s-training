@@ -8,6 +8,7 @@ import com.csm.strainging.cache.RedisConfig;
 import com.csm.straining.common.http.filter.ViewPageFilter;
 import com.csm.straining.common.http.server.HttpServer;
 import com.csm.straining.common.http.servlet.ViewPageServlet;
+import com.csm.straining.repeater.client.MessageRepeaterClient;
 
 
 /**
@@ -48,6 +49,10 @@ public class UserServer extends HttpServer {
 		try {
 			
 			RedisConfig.ins().init();
+			
+			MessageRepeaterClient.ins().setup();
+			MessageRepeaterClient.ins().startClient();
+			
 			
 			server.setup(System.getProperty("server.root.path"));
 			server.startServer();

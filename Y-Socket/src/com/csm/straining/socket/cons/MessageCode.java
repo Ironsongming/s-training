@@ -24,4 +24,8 @@ public class MessageCode {
 		public static final int FAIL = 23003;	
 	}
 
+	public interface ForceOfflinePushPID {
+		public static final int REQUEST = 21005;
+	}
+
 }

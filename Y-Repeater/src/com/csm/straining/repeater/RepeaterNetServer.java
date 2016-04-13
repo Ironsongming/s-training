@@ -13,6 +13,7 @@ import com.csm.straining.common.socket.server.listener.SessionCreatedEventListen
 import com.csm.straining.repeater.action.HeartbeatAction;
 import com.csm.straining.repeater.action.LoginAction;
 import com.csm.straining.repeater.action.TestAction;
+import com.csm.straining.repeater.action.message.RepeaterForceOfflineAction;
 import com.csm.straining.repeater.client.RepeaterCode;
 
 
@@ -59,6 +60,7 @@ public class RepeaterNetServer extends NetServer{
 		context.registerAction(RepeaterCode.TestPID.REQUEST, TestAction.class);
 		context.registerAction(RepeaterCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
 		context.registerAction(RepeaterCode.LoginPID.REQUEST, LoginAction.class);
+		context.registerAction(RepeaterCode.ForceOfflineSendPID.REQUEST, RepeaterForceOfflineAction.class);
 	}
 	
 	public void addMessageSession(int clientID, Session session) {
@@ -69,6 +71,9 @@ public class RepeaterNetServer extends NetServer{
 		messageSessionGroup.add(clientID, session);
 	}
 	
+	public Session getClientSession(int clientID) {
+		return messageSessionGroup.get(clientID);
+	}
 	
 	@Override
 	protected String getListenAddress() {

@@ -36,4 +36,8 @@ public class Config {
 		return Integer.parseInt(getValue("server.id"));
 	}
 	
+	public static String getServerType() {
+		return getValue("server.type");
+	}
+	
 }

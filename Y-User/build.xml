@@ -55,6 +55,8 @@
 			<zipfileset dir="../X-Common/lib" includes="jedis_2.5.2.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="commons-pool2-2.2.jar" prefix="lib"/>
 
+			<!-- socket -->
+			<zipfileset dir="../X-RepeaterClient" includes="x-repeaterclient.jar" prefix="lib" />
 
 
 

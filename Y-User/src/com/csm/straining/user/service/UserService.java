@@ -1,20 +1,30 @@
 package com.csm.straining.user.service;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.csm.strainging.cache.impl.session.SessionKeyCache;
 import com.csm.strainging.cache.impl.session.SessionOfflineKeyCache;
+import com.csm.strainging.cache.impl.session.SessionServerCache;
 import com.csm.strainging.cache.impl.user.UserInfoCache;
 import com.csm.strainging.cache.support.UserCacheSupport;
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.Status;
 import com.csm.straining.common.i.user.entity.UserEntity;
+import com.csm.straining.common.socket.netkit.message.Message;
+import com.csm.straining.common.socket.server.util.MessageUtil;
 import com.csm.straining.common.util.CommonUtil;
+import com.csm.straining.repeater.client.MessageRepeaterClient;
+import com.csm.straining.repeater.client.RepeaterCode;
+import com.csm.straining.repeater.client.RepeaterMessage;
 import com.csm.straining.user.refer.UserServiceReference;
 import com.csm.straining.user.resp.PhoneLoginResp;
 import com.csm.straining.user.resp.UserCreateResp;
+import com.lamfire.utils.JSON;
 
 
 /**
@@ -68,6 +78,26 @@ public class UserService {
 		if (null != oldKey) {
 			SessionKeyCache.del(oldKey);
 			SessionOfflineKeyCache.setAndExpire(oldKey, userID);
+			
+			// forceOffline
+			logger.debug("assignAndLogin forceOffline begin");
+			
+			Map<String , Object> data = new HashMap<String, Object>();
+			data.put("msg:", "你的账号在别处登录");
+			
+			int serverID = SessionServerCache.getServerID(userID);
+			if (serverID <= 0) {
+				logger.debug("assignAndLogin forceOffline error");
+			} else {
+				RepeaterMessage repeaterMessage = new RepeaterMessage();
+				repeaterMessage.setMsg(data);
+				repeaterMessage.setTargetClientID(serverID);
+				repeaterMessage.setTargetID(userID);	
+				Message message = MessageUtil.getMessage(RepeaterCode.ForceOfflineSendPID.REQUEST, JSON.toJsonString(repeaterMessage));
+				MessageRepeaterClient.ins().send(message);
+			}
+			
+			logger.debug("assignAndLogin forceOffline finish");		
 		}
 		
 		UserInfoCache.setSessionKey(userID, sessionKey);

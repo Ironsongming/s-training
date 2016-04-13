@@ -177,6 +177,37 @@ public class RedisCache {
 		}
 	}
 	
+	public long zrem(String key, String member) {
+		JedisPool pool = rp.getMaster();
+		Jedis jedis = pool.getResource();
+		try {
+			return jedis.zrem(key, member);
+		} catch (Exception e) {
+			pool.returnBrokenResource(jedis);
+			jedis = null;
+			throw new RuntimeException(e);
+		} finally {
+			if (jedis != null) {
+				pool.returnResource(jedis);
+			}
+		}
+	}
+	
+	public Double zscore(String key, String member) {
+		JedisPool pool = rp.getMaster();
+		Jedis jedis = pool.getResource();
+		try {
+			return jedis.zscore(key, member);
+		} catch (Exception e) {
+			pool.returnBrokenResource(jedis);
+			jedis = null;
+			throw new RuntimeException(e);
+		} finally {
+			if (jedis != null) {
+				pool.returnResource(jedis);
+			}
+		}
+	}
 	
 
 }
