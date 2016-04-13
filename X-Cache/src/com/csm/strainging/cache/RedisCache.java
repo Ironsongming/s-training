@@ -145,6 +145,38 @@ public class RedisCache {
 		}
 	}
 	
+	public long zadd(String key, double score, String member) {
+		JedisPool pool = rp.getMaster();
+		Jedis jedis = pool.getResource();
+		try {
+			return jedis.zadd(key, score, member);
+		} catch (Exception e) {
+			pool.returnBrokenResource(jedis);
+			jedis = null;
+			throw new RuntimeException(e);
+		} finally {
+			if (jedis != null) {
+				pool.returnResource(jedis);
+			}
+		}
+	}
+	
+	public long zremrangeByScore(String key, double start, double end) {
+		JedisPool pool = rp.getMaster();
+		Jedis jedis = pool.getResource();
+		try {
+			return jedis.zremrangeByScore(key, start, end);
+		} catch (Exception e) {
+			pool.returnBrokenResource(jedis);
+			jedis = null;
+			throw new RuntimeException(e);
+		} finally {
+			if (jedis != null) {
+				pool.returnResource(jedis);
+			}
+		}
+	}
+	
 	
 
 }

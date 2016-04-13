@@ -75,17 +75,17 @@ public abstract class RepeaterClient extends NetkitClient {
 		Map<String, String> map = new HashMap<String, String>();
 		map.put("test", "chensongming client login repeater");
 		
-		while (true) {
-			Message message = MessageUtil.getMessage(RepeaterCode.TestPID.REQUEST, JSON.toJsonString(map));
-			send(message);
-			
-			try {
-				Thread.sleep(3000);
-			} catch (InterruptedException e) {
-				e.printStackTrace();
-			}
-			
-		}
+//		while (true) {
+//			Message message = MessageUtil.getMessage(RepeaterCode.TestPID.REQUEST, JSON.toJsonString(map));
+//			send(message);
+//			
+//			try {
+//				Thread.sleep(3000);
+//			} catch (InterruptedException e) {
+//				e.printStackTrace();
+//			}
+//			
+//		}
 	}
 	
 	public void loginCallBack() {
@@ -100,6 +100,8 @@ public abstract class RepeaterClient extends NetkitClient {
 			logger.error("repeater message exception : ", e);
 		}
 	}
+	
+	protected abstract int getServerID();
 	
 	protected String getRepeaterHost() {
 		return "127.0.0.1";

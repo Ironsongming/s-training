@@ -11,5 +11,17 @@ public class MessageCode {
 		public static final int SUCCESS = 22001;
 		public static final int FAIL = 23001;
 	}
+	
+	public interface LoginPID {
+		public static final int REQUEST = 21002;
+		public static final int SUCCESS = 22002;
+		public static final int FAIL = 23002;	
+	}
+	
+	public interface HeartbeatPID {
+		public static final int REQUEST = 21003;
+		public static final int SUCCESS = 22003;
+		public static final int FAIL = 23003;	
+	}
 
 }

@@ -23,6 +23,10 @@ public class SessionKeyCache extends SessionCacheSupport {
 		return 0;
 	}
 	
+	public static void expire(String sessionKey) {
+		getCache().expire(getKey(sessionKey), EXPIRE);
+	}
+	
 	public static void del(String sessionKey) {
 		getCache().del(getKey(sessionKey));
 	}

@@ -44,6 +44,14 @@
 			<zipfileset dir="../X-Common/lib" includes="slf4j-log4j12-1.6.6.jar" prefix="lib" />
 			
 			<zipfileset dir="../X-RepeaterClient" includes="x-repeaterclient.jar" prefix="lib" />
+			
+			
+			<!-- redis -->
+			<zipfileset dir="../X-Cache" includes="x-cache.jar" prefix="lib"/>
+			
+			<zipfileset dir="../X-Common/lib" includes="jedis_2.5.2.jar" prefix="lib"/>
+			<zipfileset dir="../X-Common/lib" includes="commons-pool2-2.2.jar" prefix="lib"/>
+			
 						
 		</tar>
 	</target>

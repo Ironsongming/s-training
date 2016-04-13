@@ -17,6 +17,12 @@ public class MessageRepeaterClient extends RepeaterClient{
 	}
 	
 	@Override
+	public int getServerID() {
+		return Config.getServerID();
+	}
+	
+	
+	@Override
 	protected String getRepeaterHost() {
 		return Config.getRepeaterHost();
 	}
