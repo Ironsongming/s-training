@@ -4,11 +4,14 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.csm.straining.common.socket.netkit.NetkitContext;
+import com.csm.straining.common.socket.netkit.Session;
 import com.csm.straining.common.socket.netkit.SessionGroup;
 import com.csm.straining.common.socket.server.NetServer;
 import com.csm.straining.common.socket.server.listener.ConnectionEventListener;
 import com.csm.straining.common.socket.server.listener.SessionClosedEventListener;
 import com.csm.straining.common.socket.server.listener.SessionCreatedEventListener;
+import com.csm.straining.repeater.action.HeartbeatAction;
+import com.csm.straining.repeater.action.LoginAction;
 import com.csm.straining.repeater.action.TestAction;
 import com.csm.straining.repeater.client.RepeaterCode;
 
@@ -30,7 +33,7 @@ public class RepeaterNetServer extends NetServer{
 		return instance;
 	}
 	
-	private SessionGroup userSessionGroup = new SessionGroup();
+	private SessionGroup messageSessionGroup = new SessionGroup();
 	
 	@Override
 	protected void setupServer() throws Exception {
@@ -54,7 +57,18 @@ public class RepeaterNetServer extends NetServer{
 	
 	private void registerAction(NetkitContext context) {
 		context.registerAction(RepeaterCode.TestPID.REQUEST, TestAction.class);
+		context.registerAction(RepeaterCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
+		context.registerAction(RepeaterCode.LoginPID.REQUEST, LoginAction.class);
 	}
+	
+	public void addMessageSession(int clientID, Session session) {
+		Session oldSession = messageSessionGroup.remove(clientID);
+		if (oldSession != null) {
+			oldSession.close();
+		}
+		messageSessionGroup.add(clientID, session);
+	}
+	
 	
 	@Override
 	protected String getListenAddress() {

@@ -1,11 +1,13 @@
 package com.csm.straining.repeater.client;
 
+import java.sql.Time;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.ScheduledFuture;
+import java.util.concurrent.TimeUnit;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -71,25 +73,51 @@ public abstract class RepeaterClient extends NetkitClient {
 	public void loginRepeater() {
 		logger.info("client login repeater....");
 		
-		// 先做测试连接
-		Map<String, String> map = new HashMap<String, String>();
-		map.put("test", "chensongming client login repeater");
-		
-//		while (true) {
-//			Message message = MessageUtil.getMessage(RepeaterCode.TestPID.REQUEST, JSON.toJsonString(map));
-//			send(message);
-//			
-//			try {
-//				Thread.sleep(3000);
-//			} catch (InterruptedException e) {
-//				e.printStackTrace();
-//			}
-//			
-//		}
+		Map<String, Object> loginBean = new HashMap<String, Object>();
+		loginBean.put("repeaterClientID", getServerID());
+		Message loginMessage = MessageUtil.getMessage(RepeaterCode.LoginPID.REQUEST, JSON.toJsonString(loginBean));
+		try {
+			session.sendMessage(loginMessage);
+			logger.info("client login repeater done ....");
+		} catch (Exception e) {
+			logger.info("client login repeater error ....");
+		} finally {
+			startHeartbeat();
+		}
 	}
 	
 	public void loginCallBack() {
 		
+	}
+	
+	public void startHeartbeat() {
+		stopHeartbeat();
+		scheduledFuture = scheduledExecutorService.scheduleAtFixedRate(new Runnable() {
+			
+			@Override
+			public void run() {
+				Message hbMessage = MessageUtil.getMessage(RepeaterCode.HeartbeatPID.REQUEST);
+				try {
+					session.sendMessage(hbMessage);
+				} catch (Exception e) {
+					heartbeatErrorcCount ++;
+					logger.info("client heartbeat error ....");
+				} finally {
+					if (heartbeatErrorcCount >= getMaxHeartbeatErrorcCount()) {
+						logger.info("heartbeatErrorcCount reach : " + getMaxHeartbeatErrorcCount());
+						logger.info("client restart : " + getMaxHeartbeatErrorcCount());
+						heartbeatErrorcCount = 0;
+						startClient();
+					}
+				}
+			}
+		}, 10 , 10, TimeUnit.SECONDS);
+	}
+	
+	public void stopHeartbeat() {
+		if (scheduledFuture != null) {
+			scheduledFuture.cancel(true);
+		}
 	}
 	
 	public void send(Message message) {

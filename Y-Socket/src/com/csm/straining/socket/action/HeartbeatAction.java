@@ -8,7 +8,7 @@ import com.csm.straining.socket.cons.MessageCode;
 /**
  * @author chensongming
  */
-public class HeartbearAction extends ActionSupport{
+public class HeartbeatAction extends ActionSupport{
 	
 	@Override
 	protected void execute() throws ActionException {

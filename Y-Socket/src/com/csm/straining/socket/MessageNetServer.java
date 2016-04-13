@@ -14,7 +14,7 @@ import com.csm.straining.common.socket.server.listener.SessionClosedEventListene
 import com.csm.straining.common.socket.server.listener.SessionCreatedEventListener;
 import com.csm.straining.repeater.client.MessageRepeaterClient;
 import com.csm.straining.repeater.client.RepeaterCode;
-import com.csm.straining.socket.action.HeartbearAction;
+import com.csm.straining.socket.action.HeartbeatAction;
 import com.csm.straining.socket.action.LoginAction;
 import com.csm.straining.socket.action.TestAction;
 import com.csm.straining.socket.cons.MessageCode;
@@ -78,7 +78,7 @@ public class MessageNetServer extends NetServer{
 	private void registerAction(NetkitContext context) {
 		context.registerAction(MessageCode.TestPID.REQUEST, TestAction.class);
 		context.registerAction(MessageCode.LoginPID.REQUEST, LoginAction.class);
-		context.registerAction(MessageCode.HeartbeatPID.REQUEST, HeartbearAction.class);
+		context.registerAction(MessageCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
 	}
 	
 	public void addUserSession(long userID, Session session) {
