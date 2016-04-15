@@ -15,16 +15,20 @@ import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.Status;
 import com.csm.straining.common.i.user.entity.UserEntity;
+import com.csm.straining.common.i.user.info.UserInfo;
 import com.csm.straining.common.socket.netkit.message.Message;
 import com.csm.straining.common.socket.server.util.MessageUtil;
 import com.csm.straining.common.util.CommonUtil;
+import com.csm.straining.common.util.ImageUtil;
 import com.csm.straining.repeater.client.MessageRepeaterClient;
 import com.csm.straining.repeater.client.RepeaterCode;
 import com.csm.straining.repeater.client.RepeaterMessage;
 import com.csm.straining.user.refer.UserServiceReference;
 import com.csm.straining.user.resp.PhoneLoginResp;
 import com.csm.straining.user.resp.UserCreateResp;
+import com.csm.straining.user.resp.UserDetailResp;
 import com.lamfire.utils.JSON;
+import com.lamfire.utils.StringUtils;
 
 
 /**
@@ -105,5 +109,26 @@ public class UserService {
 		return sessionKey;
 	}
 	
+	public static UserDetailResp userDetailResp(long userID) throws CoreException, AppException {
+		UserDetailResp resp = new UserDetailResp();
+		UserInfo user = new UserInfo();
+		resp.user = user;
+
+		UserEntity userEntity = UserServiceReference.sharedService().getUserByID(userID);
+		if (userEntity == null) {
+			throw new AppException("用户不存在");
+		}
+		
+		user.userID = userEntity.getUserID();
+		user.username = userEntity.getUsername();
+		user.phone = userEntity.getPhone();
+		user.signNature = StringUtils.isBlank(userEntity.getSignNature()) ? "该用户很懒，什么也没留下" : userEntity.getSignNature();
+		user.avatar = StringUtils.isBlank(userEntity.getAvatar()) ? "" : ImageUtil.getLoadPath(userEntity.getAvatar());
+		user.status = userEntity.getStatus();
+		user.rank = userEntity.getRank();
+		user.score = userEntity.getScore();
+		
+		return resp;
+	}
 
 }

@@ -11,6 +11,8 @@ import com.lamfire.utils.StringUtils;
  */
 public abstract class AuthJsonViewPage extends JsonViewPage{
 
+	protected long currentUserID;
+	
 	@Override
 	protected boolean auth() {
 		
@@ -23,6 +25,7 @@ public abstract class AuthJsonViewPage extends JsonViewPage{
 				return false;
 			}
 			
+			currentUserID = userID;
 			return true;
 		}
 		

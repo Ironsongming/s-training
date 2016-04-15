@@ -19,5 +19,6 @@
 	<classpathentry kind="lib" path="/X-Common/lib/zookeeper-3.4.5.jar"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/X-Cache"/>
 	<classpathentry combineaccessrules="false" kind="src" path="/X-RepeaterClient"/>
+	<classpathentry combineaccessrules="false" kind="src" path="/X-Core"/>
 	<classpathentry kind="output" path="output"/>
 </classpath>

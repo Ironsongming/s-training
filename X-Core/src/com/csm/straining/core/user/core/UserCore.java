@@ -10,7 +10,9 @@ import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.core.user.util.UserHelper;
 import com.csm.straining.dataaccess.caps.user.UserCaps;
+import com.csm.straining.dataaccess.caps.user.UserRankCaps;
 import com.csm.straining.dataaccess.entity.user.User;
+import com.csm.straining.dataaccess.entity.user.UserRank;
 import com.lamfire.code.MD5;
 
 
@@ -54,7 +56,21 @@ public class UserCore {
 	}
 	
 	public static UserEntity getUserByID(long userID) throws CoreException {
-		return UserHelper.domain2Entity(UserCaps.getUserByID(userID));
+		UserEntity userEntity =  UserHelper.domain2Entity(UserCaps.getUserByID(userID));
+		
+		if (userEntity == null) {
+			return null;
+		}
+		
+		UserRank userRank = UserRankCaps.getUserRankByUserID(userID);
+		if (null != userRank) {
+			userEntity.setScore(userRank.getScore());
+			userEntity.setRank(userRank.getRank());
+		} else {
+			userEntity.setScore(0);
+			userEntity.setRank(0);
+		}
+		return userEntity;
 	}
 	
 	public static long loginByPhonePwd(String phone, String password) throws CoreException, AppException {
