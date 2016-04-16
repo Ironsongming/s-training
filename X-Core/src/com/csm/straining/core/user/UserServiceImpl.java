@@ -2,6 +2,7 @@ package com.csm.straining.core.user;
 
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
+import com.csm.straining.common.i.Status.User;
 import com.csm.straining.common.i.user.UserService;
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.params.UserParams;
@@ -42,6 +43,15 @@ public class UserServiceImpl implements UserService{
 	public long loginByPhonePwd(String phone, String password) throws CoreException, AppException {
 		return UserCore.loginByPhonePwd(phone, password);
 	}
+	
+	/**
+	 * 更新用户资料
+	 */
+	@Override
+	public void updateUserDetail(UserParams params) throws CoreException {
+		UserCore.updateUserDetail(params);
+	}
+	
 	
 
 }

@@ -16,6 +16,8 @@ import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.Status;
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.info.UserInfo;
+import com.csm.straining.common.i.user.params.UserParams;
+import com.csm.straining.common.model.info.common.ResponseStatus;
 import com.csm.straining.common.socket.netkit.message.Message;
 import com.csm.straining.common.socket.server.util.MessageUtil;
 import com.csm.straining.common.util.CommonUtil;
@@ -129,6 +131,11 @@ public class UserService {
 		user.score = userEntity.getScore();
 		
 		return resp;
+	}
+	
+	public static ResponseStatus userUpdateDetailResp(UserParams params) throws CoreException {
+		UserServiceReference.sharedService().updateUserDetail(params);
+		return new ResponseStatus();
 	}
 
 }

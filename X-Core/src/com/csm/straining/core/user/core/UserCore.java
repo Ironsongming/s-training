@@ -8,6 +8,7 @@ import org.slf4j.LoggerFactory;
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.user.entity.UserEntity;
+import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.core.user.util.UserHelper;
 import com.csm.straining.dataaccess.caps.user.UserCaps;
 import com.csm.straining.dataaccess.caps.user.UserRankCaps;
@@ -87,4 +88,15 @@ public class UserCore {
 		}
 	}
 	
+	public static void updateUserDetail(UserParams params) throws CoreException {
+		
+		User user = new User();
+		user.setId(params.getUserID());
+		user.setUsername(params.getUsername());
+		user.setPassword(params.getPassword());
+		user.setAvatar(params.getAvatar());
+		user.setSignNature(params.getSignNature());
+		
+		UserCaps.updateUserDetail(user);
+	}
 }

@@ -1,10 +1,14 @@
 package com.csm.straining.common.i.user.params;
 
+import java.io.Serializable;
+
 
 /**
  * @author chensongming
  */
-public class UserParams {
+public class UserParams implements Serializable {
+	
+	private static final long serialVersionUID = 5134182652084132691L;
 	
 	private long userID;
 	private String username;

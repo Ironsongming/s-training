@@ -81,5 +81,21 @@ public class UserCaps {
 			}
 		}
 	}
+	
+	public static void updateUserDetail(User user) throws CoreException {
+		Dao<UserMapper> dao = null;
+		
+		try {
+			dao = DbConfig.openSessionMaster(UserMapper.class);
+			dao.mapper().updateByPrimaryKeySelective(user);
+		} catch (Exception e) {
+			logger.debug("[UserCaps] updateUserDetail : ", e);
+			throw new CoreException(CoreException.DATABASE, e);
+		} finally {
+			if (dao != null) {
+				dao.close();
+			}
+		}
+	}
 
 }

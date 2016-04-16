@@ -5,6 +5,7 @@ import com.csm.straining.user.page.PhoneLoginPage;
 import com.csm.straining.user.page.TestPage;
 import com.csm.straining.user.page.UserCreatePage;
 import com.csm.straining.user.page.UserDetailPage;
+import com.csm.straining.user.page.UserUpdatePage;
 
 
 /**
@@ -23,6 +24,7 @@ public class ActionCenterServlet extends ViewPageServlet {
 		addViewPage("/user/account/create", 1, PLATFORM_COMMON, UserCreatePage.class);
 		addViewPage("/user/login/phone", 1, PLATFORM_COMMON, PhoneLoginPage.class);
 		addViewPage("/user/detail", 1, PLATFORM_COMMON, UserDetailPage.class);
+		addViewPage("/user/detail/update", 1, PLATFORM_COMMON, UserUpdatePage.class);
 	}
 
 }

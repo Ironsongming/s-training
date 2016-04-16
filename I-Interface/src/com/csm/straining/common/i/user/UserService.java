@@ -45,4 +45,11 @@ public interface UserService {
 	 */
 	long loginByPhonePwd(String phone, String password) throws CoreException, AppException;
 	
+	/**
+	 * 更新用户资料
+	 * 
+	 * @param user
+	 */
+	void updateUserDetail(UserParams params) throws CoreException;
+	
 }
