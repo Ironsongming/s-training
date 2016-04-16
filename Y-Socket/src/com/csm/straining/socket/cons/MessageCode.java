@@ -27,5 +27,13 @@ public class MessageCode {
 	public interface ForceOfflinePushPID {
 		public static final int REQUEST = 21005;
 	}
+	
+	public interface LogoutPID {
+		public static final int REQUEST = 21006;
+		public static final int SUCCESS = 22006;
+		public static final int FAIL = 23006;	
+	}
+	
+	
 
 }

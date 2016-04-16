@@ -16,10 +16,12 @@ import com.csm.straining.repeater.client.MessageRepeaterClient;
 import com.csm.straining.repeater.client.RepeaterCode;
 import com.csm.straining.socket.action.HeartbeatAction;
 import com.csm.straining.socket.action.LoginAction;
+import com.csm.straining.socket.action.LogoutAction;
 import com.csm.straining.socket.action.TestAction;
 import com.csm.straining.socket.action.repeater.ForceOfflineAction;
 import com.csm.straining.socket.cons.MessageCode;
 import com.csm.straining.socket.filter.MessageFilter;
+import com.lamfire.utils.JSON;
 
 
 /**
@@ -83,6 +85,7 @@ public class MessageNetServer extends NetServer{
 	private void registerAction(NetkitContext context) {
 		context.registerAction(MessageCode.TestPID.REQUEST, TestAction.class);
 		context.registerAction(MessageCode.LoginPID.REQUEST, LoginAction.class);
+		context.registerAction(MessageCode.LogoutPID.REQUEST, LogoutAction.class);
 		context.registerAction(MessageCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
 	}
 	
