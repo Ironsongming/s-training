@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<project basedir="." default="zip" name="y-user">
+<project basedir="." default="zip" name="y-article">
 	<target name="clean">
 		<delete file="${ant.project.name}.jar">
 		</delete>

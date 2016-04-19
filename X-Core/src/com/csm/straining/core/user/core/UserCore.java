@@ -1,6 +1,8 @@
 package com.csm.straining.core.user.core;
 
 import java.util.Date;
+import java.util.List;
+import java.util.Map;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -23,6 +25,11 @@ import com.lamfire.code.MD5;
 public class UserCore {
 
 	private static final Logger logger = LoggerFactory.getLogger(UserCore.class);
+	
+	
+	public static boolean existUserID(long userID) throws CoreException {
+		return UserCaps.existUserID(userID);
+	}
 	
 	public static UserEntity createUserAccount(String phone, String password) throws CoreException, AppException {
 		
@@ -72,6 +79,18 @@ public class UserCore {
 			userEntity.setRank(0);
 		}
 		return userEntity;
+	}
+	
+	public static UserEntity getSimpleUserByID(long userID) throws CoreException {
+		return UserHelper.domain2Entity(UserCaps.getUserByID(userID));
+	}
+	
+	public static List<UserEntity> getSimpleUserByIDs(List<Long> userIDs) throws CoreException {
+		return UserHelper.domain2Entity(UserCaps.getUserByIDs(userIDs));
+	}
+	
+	public static Map<Long, UserEntity> getSimpleUserMapByIDs(List<Long> userIDs) throws CoreException {
+		return UserHelper.domain2EntityMap(UserCaps.getUserByIDs(userIDs));
 	}
 	
 	public static long loginByPhonePwd(String phone, String password) throws CoreException, AppException {

@@ -1,5 +1,10 @@
 package com.csm.straining.core.user.util;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.common.util.ImageUtil;
@@ -41,6 +46,34 @@ public class UserHelper {
 		// TODO 装载Loaction和occupation
 		
 		return entity;
+	}
+	
+	public static List<UserEntity> domain2Entity(List<User> domains) {
+		
+		if (domains == null || domains.isEmpty()) {
+			return new ArrayList<UserEntity>();
+		}
+		
+		List<UserEntity> entities = new ArrayList<UserEntity>();
+		 
+		for (User domain : domains) {
+			entities.add(domain2Entity(domain));
+		} 
+		return entities;
+	}
+	
+	public static Map<Long, UserEntity> domain2EntityMap(List<User> domains) {
+		
+		Map<Long, UserEntity> entities = new HashMap<Long, UserEntity>();
+		
+		if (domains == null || domains.isEmpty()) {
+			return entities;
+		}
+		 
+		for (User domain : domains) {
+			entities.put(domain.getId(), domain2Entity(domain));
+		} 
+		return entities;
 	}
 	
 	public static User params2Domain(UserParams params) {

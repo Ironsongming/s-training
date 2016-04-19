@@ -23,7 +23,7 @@ public class UserEntity implements Serializable{
 	private String avatar;
 	private byte status;
 	
-	// 业务字段
+	// 可预加载字段
 	private int rank;
 	private int score;
 	

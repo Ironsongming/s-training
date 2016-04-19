@@ -22,6 +22,7 @@ import org.slf4j.LoggerFactory;
 
 import com.csm.straining.common.configcenter.ConfigLoadListener;
 import com.csm.straining.common.configcenter.StoreConfigCore;
+import com.lamfire.utils.JSON;
 import com.lamfire.utils.StringUtils;
 
 
@@ -45,7 +46,7 @@ public class DbConfig implements ConfigLoadListener{
 	private Map<String, SqlSessionFactory> packageMap = new ConcurrentHashMap<String, SqlSessionFactory>();
 	private Map<Class<?>, SqlSessionFactory> clsMap = new ConcurrentHashMap<Class<?>, SqlSessionFactory>();
 	
-	private static String[] dbs = new String[] {"test", "user"};
+	private static String[] dbs = new String[] {"test", "user", "article"};
 	
 	
 	private Properties props = new Properties();

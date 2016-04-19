@@ -1,30 +1,29 @@
 package com.csm.straining.article.refer;
 
 import com.csm.straining.article.Config;
-import com.csm.straining.common.i.user.UserService;
+import com.csm.straining.common.i.article.ArticleService;
+import com.csm.straining.common.i.test.TestService;
 import com.csm.straining.common.rpc.RpcClient;
 
 
 /**
  * @author chensongming
  */
-public class UserServiceReference extends RpcClient<UserService> {
+public class ArticleServiceReference extends RpcClient<ArticleService> {
 	
-	private static UserServiceReference reference = new UserServiceReference();
+	private static ArticleServiceReference reference = new ArticleServiceReference();
 	
-	public static UserService sharedService() {
+	public static ArticleService sharedService() {
 		return reference.getReference();
 	}
 
 	@Override
 	protected String getApplicationName() {
-//		return "y-user";
 		return Config.getApplicationName();
 	}
 
 	@Override
 	protected String getZookeeperAddr() {
-//		return "localhost:2181";
 		return Config.getZkperAddr();
 	}
 }
