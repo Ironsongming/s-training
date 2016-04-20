@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.csm.straining.dataaccess.mapper.contact.GroupCusMapper" >
+ 	<update id="incrGroupMemberCount" parameterType="Long">
+		update
+		tb_group set memberCount = memberCount + 1
+		where id = #{groupID}
+	</update>
+	
+	<update id="descGroupMemberCount" parameterType="Long">
+		update
+		tb_group set memberCount = memberCount - 1
+		where id = #{groupID} and memberCount > 0
+	</update>
+	
+	<insert id="multiInsertGroupUser" parameterType="java.util.List">  
+    <selectKey resultType="int" keyProperty="id" order="AFTER">  
+        SELECT  
+        LAST_INSERT_ID()  
+    </selectKey>  
+    insert into tb_group_user (groupID, userID, createAt)   
+    values  
+    <foreach collection="list" item="item" index="index" separator="," >  
+        (#{item.groupID,jdbcType=BIGINT},#{item.userID,jdbcType=BIGINT},
+         #{item.createAt,jdbcType=TIMESTAMP})  
+    </foreach>  
+  </insert>
+	
+</mapper>

@@ -19,6 +19,7 @@ import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.info.UserInfo;
 import com.csm.straining.common.model.info.common.ResponseStatus;
 import com.csm.straining.common.util.ImageUtil;
+import com.csm.straining.core.user.util.UserHelper;
 import com.lamfire.utils.StringUtils;
 
 
@@ -46,20 +47,6 @@ public class ArticleService {
 		return new ResponseStatus();
 	}
 	
-	private static UserInfo userEntity2Info(UserEntity entity) {
-		if (entity == null) {
-			return null;
-		}
-		UserInfo info = new UserInfo();
-		info.userID = entity.getUserID();
-		info.username = entity.getUsername();
-		info.phone = entity.getPhone();
-		info.signNature = StringUtils.isBlank(entity.getSignNature()) ? "该用户很懒，什么也没留下" : entity.getSignNature();
-		info.avatar = StringUtils.isBlank(entity.getAvatar()) ? "" : ImageUtil.getLoadPath(entity.getAvatar());
-		info.status = entity.getStatus();
-		return info;
-	}
-	
 	private static ArticleInfo parseArticleDetailInfo(ArticleEntity articleEntity, long optUserID) {
 		ArticleInfo articleInfo = new ArticleInfo();
 		articleInfo.articleID = articleEntity.getId();
@@ -71,7 +58,7 @@ public class ArticleService {
 		articleInfo.commentCount = articleEntity.getCommentCount();
 		
 		
-		UserInfo user = userEntity2Info(articleEntity.getUser());
+		UserInfo user = UserHelper.entity2Info(articleEntity.getUser());
 		articleInfo.user = user;
 		
 		for (ArticleCommentEntity articleCommentEntity : articleEntity.getComments()) {
@@ -79,8 +66,8 @@ public class ArticleService {
 			ArticleCommentInfo articleCommentInfo = new ArticleCommentInfo();
 			articleCommentInfo.articleCommentID = articleCommentEntity.getId();
 			articleCommentInfo.content = articleCommentEntity.getContent();
-			articleCommentInfo.user = userEntity2Info(articleCommentEntity.getUser());
-			articleCommentInfo.replyUser = userEntity2Info(articleCommentEntity.getReplyUser());
+			articleCommentInfo.user = UserHelper.entity2Info(articleCommentEntity.getUser());
+			articleCommentInfo.replyUser = UserHelper.entity2Info(articleCommentEntity.getReplyUser());
 			
 			if (optUserID == articleEntity.getUserID() || optUserID == articleCommentEntity.getUserID()) {
 				articleCommentInfo.canDelete = 1;
@@ -103,7 +90,7 @@ public class ArticleService {
 		articleInfo.commentCount = articleEntity.getCommentCount();
 		
 		
-		UserInfo user = userEntity2Info(articleEntity.getUser());
+		UserInfo user = UserHelper.entity2Info(articleEntity.getUser());
 		articleInfo.user = user;
 		
 		if (optUserID  == articleEntity.getUserID()) {

@@ -1,64 +1,21 @@
-package com.csm.straining.core.user;
+package com.csm.straining.core.contact;
 
 import java.util.List;
 import java.util.Set;
 
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
-import com.csm.straining.common.i.Status.User;
+import com.csm.straining.common.i.contact.ContactService;
 import com.csm.straining.common.i.contact.entity.GroupEntity;
-import com.csm.straining.common.i.user.UserService;
 import com.csm.straining.common.i.user.entity.UserEntity;
-import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.core.contact.core.ContactCore;
-import com.csm.straining.core.user.core.UserCore;
-import com.csm.straining.core.user.util.UserHelper;
 
 
 /**
  * @author chensongming
  */
-public class UserServiceImpl implements UserService{
-	
-	/** --------------------User------------------ **/
-	
-	/**
-	 * 插入用户
-	 * @throws AppException 
-	 * @throws CoreException 
-	 */
-	@Override
-	public UserEntity createUserAccount(String phone, String password) throws CoreException, AppException {
-		return UserCore.createUserAccount(phone, password);
-	}
-	
-	/**
-	 * 根据用户ID获取用户
-	 * @throws CoreException 
-	 */
-	@Override
-	public UserEntity getUserByID(long userID) throws CoreException {
-		return UserCore.getUserByID(userID);
-	}
-	
-	/**
-	 * 注册电话登录
-	 */
-	@Override
-	public long loginByPhonePwd(String phone, String password) throws CoreException, AppException {
-		return UserCore.loginByPhonePwd(phone, password);
-	}
-	
-	/**
-	 * 更新用户资料
-	 */
-	@Override
-	public void updateUserDetail(UserParams params) throws CoreException {
-		UserCore.updateUserDetail(params);
-	}
-	
-	
-	
+public class ContactServiceIml implements ContactService {
+
 	@Override
 	public void follow(long userID, long followUserID) throws AppException,
 			CoreException {
@@ -108,6 +65,5 @@ public class UserServiceImpl implements UserService{
 	public void quitGroup(long userID, long groupID) throws CoreException {
 		ContactCore.quitGroup(userID, groupID);
 	}
-	
 
 }

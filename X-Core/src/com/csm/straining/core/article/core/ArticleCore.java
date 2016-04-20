@@ -220,6 +220,10 @@ public class ArticleCore {
 			throw new AppException("评论内容不可为空");
 		}
 		
+		if (userID == replyID) {
+			throw new AppException("不可回复自己");
+		}
+		
 		ArticleComment domain = new ArticleComment();
 		domain.setArticleID(articleID);
 		domain.setContent(content);

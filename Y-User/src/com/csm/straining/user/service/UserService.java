@@ -1,6 +1,7 @@
 package com.csm.straining.user.service;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.slf4j.Logger;
@@ -10,7 +11,6 @@ import com.csm.strainging.cache.impl.session.SessionKeyCache;
 import com.csm.strainging.cache.impl.session.SessionOfflineKeyCache;
 import com.csm.strainging.cache.impl.session.SessionServerCache;
 import com.csm.strainging.cache.impl.user.UserInfoCache;
-import com.csm.strainging.cache.support.UserCacheSupport;
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.Status;
@@ -22,6 +22,7 @@ import com.csm.straining.common.socket.netkit.message.Message;
 import com.csm.straining.common.socket.server.util.MessageUtil;
 import com.csm.straining.common.util.CommonUtil;
 import com.csm.straining.common.util.ImageUtil;
+import com.csm.straining.core.user.util.UserHelper;
 import com.csm.straining.repeater.client.MessageRepeaterClient;
 import com.csm.straining.repeater.client.RepeaterCode;
 import com.csm.straining.repeater.client.RepeaterMessage;
@@ -29,6 +30,7 @@ import com.csm.straining.user.refer.UserServiceReference;
 import com.csm.straining.user.resp.PhoneLoginResp;
 import com.csm.straining.user.resp.UserCreateResp;
 import com.csm.straining.user.resp.UserDetailResp;
+import com.csm.straining.user.resp.UserListResp;
 import com.lamfire.utils.JSON;
 import com.lamfire.utils.StringUtils;
 
@@ -40,6 +42,18 @@ public class UserService {
 	
 	private static final Logger logger = LoggerFactory.getLogger(UserService.class);
 	
+	
+	public static UserListResp getFollowByUserID(long userID) throws CoreException {
+		List<UserEntity> users = UserServiceReference.sharedService().getFollowEntityByUser(userID);
+		
+		UserListResp resp = new UserListResp();
+		for (UserEntity userEntity : users) {
+			resp.users.add(UserHelper.entity2Info(userEntity));
+		}
+		
+		return resp;
+	}
+		
 	public static UserCreateResp userCreateResp(String phone, String password) throws CoreException, AppException {
 		
 		UserCreateResp resp = new UserCreateResp();

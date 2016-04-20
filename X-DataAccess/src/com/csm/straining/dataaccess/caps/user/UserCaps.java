@@ -2,6 +2,7 @@ package com.csm.straining.dataaccess.caps.user;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,6 +37,32 @@ public class UserCaps {
 			return dao.mapper().countByExample(exp) > 0 ? true : false;
 		} catch (Exception e) {
 			logger.debug("[UserCaps] existUserID : ", e);
+			throw new CoreException(CoreException.DATABASE, e);
+		} finally {
+			if (dao != null) {
+				dao.close();
+			}
+		}
+	}
+	
+	public static boolean existUserIDs(Set<Long> userIDs) throws CoreException {
+		
+		if (userIDs == null || userIDs.isEmpty()) {
+			return false;
+		}
+		
+		Dao<UserMapper> dao = null;
+		
+		try {
+			dao = DbConfig.openSessionMaster(UserMapper.class);
+			
+			UserExample exp = new UserExample();
+			UserExample.Criteria criteria = exp.createCriteria();
+			criteria.andIdIn(new ArrayList<Long>(userIDs));
+			
+			return dao.mapper().countByExample(exp) == userIDs.size() ? true : false;
+		} catch (Exception e) {
+			logger.debug("[UserCaps] existUserIDs : ", e);
 			throw new CoreException(CoreException.DATABASE, e);
 		} finally {
 			if (dao != null) {

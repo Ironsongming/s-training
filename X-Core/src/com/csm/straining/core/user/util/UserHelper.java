@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import com.csm.straining.common.i.user.entity.UserEntity;
+import com.csm.straining.common.i.user.info.UserInfo;
 import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.common.util.ImageUtil;
 import com.csm.straining.dataaccess.entity.user.User;
@@ -93,6 +94,19 @@ public class UserHelper {
 		return domain;
 	}
 	
+	public static UserInfo entity2Info(UserEntity entity) {
+		if (entity == null) {
+			return null;
+		}
+		UserInfo info = new UserInfo();
+		info.userID = entity.getUserID();
+		info.username = entity.getUsername();
+		info.phone = entity.getPhone();
+		info.signNature = StringUtils.isBlank(entity.getSignNature()) ? "该用户很懒，什么也没留下" : entity.getSignNature();
+		info.avatar = StringUtils.isBlank(entity.getAvatar()) ? "" : ImageUtil.getLoadPath(entity.getAvatar());
+		info.status = entity.getStatus();
+		return info;
+	}
 	
 
 }

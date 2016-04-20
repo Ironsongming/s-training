@@ -3,6 +3,7 @@ package com.csm.straining.core.user.core;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -29,6 +30,10 @@ public class UserCore {
 	
 	public static boolean existUserID(long userID) throws CoreException {
 		return UserCaps.existUserID(userID);
+	}
+	
+	public static boolean existUserIDs(Set<Long> userIDs) throws CoreException {
+		return UserCaps.existUserIDs(userIDs);
 	}
 	
 	public static UserEntity createUserAccount(String phone, String password) throws CoreException, AppException {
