@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE generatorConfiguration
+  PUBLIC "-//mybatis.org//DTD MyBatis Generator Configuration 1.0//EN"
+  "http://mybatis.org/dtd/mybatis-generator-config_1_0.dtd">
+
+<generatorConfiguration>
+	<classPathEntry location="../../X-Common/lib/mysql-connector-java-5.1.22-bin.jar" />
+
+	<context id="straining" targetRuntime="MyBatis3">
+	
+		<plugin type="org.mybatis.generator.plugins.csm.PagedRelatedObjectPlugin" />
+		
+		
+		<jdbcConnection driverClass="com.mysql.jdbc.Driver"
+			connectionURL="jdbc:mysql://gd.chensongming.com:3306/db_moment" userId="chensongming"
+			password="mysql-csm-test">
+		</jdbcConnection>
+
+		<javaTypeResolver>
+			<property name="forceBigDecimals" value="false" />
+		</javaTypeResolver>
+
+		<javaModelGenerator targetPackage="com.csm.straining.dataaccess.entity.moment"
+			targetProject="../src/">
+			<property name="enableSubPackages" value="true" />
+			<property name="trimStrings" value="true" />
+		</javaModelGenerator>
+
+		<sqlMapGenerator targetPackage="com.csm.straining.dataaccess.mapper.moment"
+			targetProject="../src/">
+			<property name="enableSubPackages" value="true" />
+		</sqlMapGenerator>
+
+		<javaClientGenerator type="XMLMAPPER"
+			targetPackage="com.csm.straining.dataaccess.mapper.moment" targetProject="../src/">
+			<property name="enableSubPackages" value="true" />
+		</javaClientGenerator>
+	
+		
+		<table schema="straining" tableName="tb_moment" domainObjectName="Moment">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="mysql" identity="true" />
+		</table>
+		
+		
+		<table schema="straining" tableName="tb_moment_like" domainObjectName="MomentLike">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="mysql" identity="true" />
+		</table>
+		
+		<table schema="straining" tableName="tb_moment_reply" domainObjectName="MomentReply">
+			<property name="useActualColumnNames" value="true" />
+			<generatedKey column="id" sqlStatement="mysql" identity="true" />
+		</table>
+	
+
+			
+	</context>
+</generatorConfiguration>

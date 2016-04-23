@@ -39,5 +39,19 @@ public class Status {
 		public static final byte QUIT = 2;
 	}
 	
+	/** -------------动态相关----------------- **/
+	public static interface Moment {
+		public static final byte NORMAL = 1;
+		public static final byte DELETE = 2;
+	}
 	
+	public static interface MomentReply {
+		public static final byte NORMAL = 1;
+		public static final byte DELETE = 2;
+	}
+	
+	public static interface MomentLike {
+		public static final byte NORMAL = 1;
+		public static final byte CANCEL = 2;
+	}
 }
