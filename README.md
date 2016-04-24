@@ -41,6 +41,8 @@
 3. [健身相关](#training_api_list)
 4. [文章相关](#article_api_list)
 5. [动态相关](#moment_api_list)
+6. [图片相关](#pic_api_list)
+7. [socket相关](#socket_list)
 
 ####<h4 id = "user_api_list">用户相关接口列表<h4>
 1. [用户手机注册接口](#UserCreatePage)
@@ -86,6 +88,18 @@
 7. [创建动态评论](#MomentReplyCreatePage)
 8. [删除动态评论](#MomentReplyDeletePage)
 9. [动态点赞／取消点赞](#MomentLikeCreatePage)
+
+####<h4 id = "pic_api_list">动态相关接口列表<h4>
+1. [上传](#UploadPage)
+2. [加载](#LoadPage)
+
+
+####<h4 id = "socket_list">socket列表<h4>
+1. [用户登录](#LoginAction)
+2. [用户注销登录](#LogoutAction)
+3. [心跳](#HeartbeatAction)
+4. [好友聊天](#UserChatAction)
+5. [群聊](#GroupChatAction)
 
 ####<h4 id = "UserCreatePage">用户手机注册接口<h4>
 ##### url 
@@ -359,7 +373,7 @@
         "userID": 10000001,
         "username": "",
         "signNature": "该用户很懒，什么也没留下",
-        "phone": "18218705450",
+        "phone": "12345672277",
         "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
         "rank": 0,
         "score": 0
@@ -406,7 +420,7 @@
         "userID": 10000001,
         "username": "",
         "signNature": "该用户很懒，什么也没留下",
-        "phone": "18218705450",
+        "phone": "12345672277",
         "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
         "rank": 0,
         "score": 0
@@ -1000,4 +1014,1010 @@
   "status": 1
 }
 ```
+[回到目录](#catalog)
+
+
+####<h4 id = "ArticleDetailPage">文章详情<h4>
+##### url 
+ 
+ - /article/detail
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|article_id|long| 12311|*|文章ID|
+
+##### return  
+```json  
+{
+  "article": {
+    "articleID": 9,
+    "user": {
+      "userID": 10000000,
+      "username": "陈松铭LA",
+      "signNature": "helloworld",
+      "phone": "13580313279",
+      "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+      "status": 0,
+      "rank": 0,
+      "score": 0
+    },
+    "title": "test9",
+    "content": "test9",
+    "createAt": 0,
+    "readCount": 5,
+    "likeCount": 0,
+    "dislikeCount": 0,
+    "commentCount": 0,
+    "comments": [
+      {
+        "articleCommentID": 3,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "replyUser": null,
+        "content": "aaaaa",
+        "canDelete": 1
+      },
+      {
+        "articleCommentID": 4,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "replyUser": null,
+        "content": "aaaaa",
+        "canDelete": 1
+      },
+      {
+        "articleCommentID": 5,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "replyUser": null,
+        "content": "aaaaa",
+        "canDelete": 1
+      },
+      {
+        "articleCommentID": 6,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "replyUser": null,
+        "content": "aaaaa",
+        "canDelete": 1
+      }
+    ],
+  },
+  "ts": 1461510521194,
+  "status": 1
+}
+```
+***canDelete*** 评论删除：1.能 2.不能
+[回到目录](#catalog)
+
+####<h4 id = "ArticleRecommedListPage">推荐文章列表<h4>
+##### url 
+ 
+ - /article/list/recommed
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+| start | String | 1313131 | * | 首页为0|
+| count | int | 1 | * | 页面大小|
+
+
+##### return  
+```json  
+{
+  "articles": [
+    {
+      "articleID": 35,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "title": "陈松铭TIT",
+      "content": "陈松铭CON",
+      "createAt": 0,
+      "readCount": 0,
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "commentCount": 0,
+      "comments": [],
+      "canDelete": 1
+    },
+    {
+      "articleID": 30,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "title": "test1",
+      "content": "test",
+      "createAt": 0,
+      "readCount": 0,
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "commentCount": 0,
+      "comments": [],
+      "canDelete": 1
+    }
+  ],
+  "start": "",
+  "more": 1,
+  "ts": 1461510899096,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+
+####<h4 id = "ArticleUserListPage">用户文章列表<h4>
+##### url 
+ 
+ - /article/list/recommed
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+| start | String | 1313131 | * | 首页为0|
+| count | int | 1 | * | 页面大小|target_id
+| target_id | long | 10909090 | * | 目标userID|
+
+##### return  
+```json  
+{
+  "articles": [
+    {
+      "articleID": 35,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "title": "陈松铭TIT",
+      "content": "陈松铭CON",
+      "createAt": 0,
+      "readCount": 0,
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "commentCount": 0,
+      "comments": [],
+      "canDelete": 1
+    },
+    {
+      "articleID": 30,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "title": "test1",
+      "content": "test",
+      "createAt": 0,
+      "readCount": 0,
+      "likeCount": 0,
+      "dislikeCount": 0,
+      "commentCount": 0,
+      "comments": [],
+      "canDelete": 1
+    }
+  ],
+  "start": "",
+  "more": 1,
+  "ts": 1461510899096,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "ArticleCommentCreatePage">创建文章评论<h4>
+##### url 
+ 
+ - /article/comment/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|article_id|long| 12311|*|文章ID|
+|reply_id|long| 12311||回复用户ID|
+|content|String| aaaaa|*|回复内容|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "ArticleCommentDeletePage">删除文章评论<h4>
+##### url 
+ 
+ - /article/comment/delete
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|comment_id|long| 12311|*|评论ID|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "ArticleLikeCreatePage">点赞／灭文章<h4>
+##### url 
+ 
+ - /article/like/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|article_id|long| 12311|*|文章ID|
+|type|int| 1|*|类型：1:赞 2:灭|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+
+####<h4 id = "MomentCreatePage">创建动态<h4>
+##### url 
+ 
+ - /moment/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|content|String| 12311|*|内容|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "MomentTransferPage">转发动态<h4>
+##### url 
+ 
+ - /moment/transfer
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|content|String| 12311|*|内容|
+|transfer_id|long| 12311|*|转发ID|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "MomentDeletePage">删除动态<h4>
+##### url 
+ 
+ - /moment/delete
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|moment_id|long| 12311|*|转发ID|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+
+
+####<h4 id = "MomentDetailPage">动态详情<h4>
+##### url 
+ 
+ - /moment/detail
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|moment_id|long| 12311|*|转发ID|
+
+##### return  
+```json  
+{
+  "moment": {
+    "momentID": 3,
+    "user": {
+      "userID": 10000000,
+      "username": "陈松铭LA",
+      "signNature": "helloworld",
+      "phone": "12345672278",
+      "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+      "status": 0,
+      "rank": 0,
+      "score": 0
+    },
+    "text": "陈松铭LALALA",
+    "tranferMoment": null,
+    "createAt": 1461381901000,
+    "likeCount": 0,
+    "replyCount": 2,
+    "tranferCount": 0,
+    "likeUsers": [],
+    "replys": [
+      {
+        "replyID": 1,
+        "momentID": 3,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "text": "陈松铭HAHAH",
+        "replyUser": {
+          "userID": 10000001,
+          "username": "",
+          "signNature": "该用户很懒，什么也没留下",
+          "phone": "12345672277",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "createAt": 1461393406000,
+        "canDelete": 1
+      },
+      {
+        "replyID": 2,
+        "momentID": 3,
+        "user": {
+          "userID": 10000000,
+          "username": "陈松铭LA",
+          "signNature": "helloworld",
+          "phone": "12345672278",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "text": "陈松铭HAHAHA",
+        "replyUser": {
+          "userID": 10000001,
+          "username": "",
+          "signNature": "该用户很懒，什么也没留下",
+          "phone": "12345672277",
+          "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+          "status": 0,
+          "rank": 0,
+          "score": 0
+        },
+        "createAt": 1461393412000,
+        "canDelete": 1
+      }
+    ],
+    "canDelete": 1
+  },
+  "ts": 1461516177274,
+  "status": 1
+}
+```
+
+**canDelete** 能否删除 1:可以 2:不可以
+[回到目录](#catalog)
+
+####<h4 id = "MomentUserListPage">用户动态列表<h4>
+##### url 
+ 
+ - /moment/list/user
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|start|long| 12311|*|首页为0|
+|count|int| 20|*|页面大小|
+|target_user_id|long| 12311|*|用户ID|
+
+
+##### return  
+```json  
+{
+  "moments": [
+    {
+      "momentID": 4,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "tags": [],
+        "location": "",
+        "occupation": "",
+        "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "text": "陈松铭LALALA",
+      "tranferMoment": null,
+      "createAt": 1461393484000,
+      "likeCount": 1,
+      "replyCount": 0,
+      "tranferCount": 0,
+      "likeUsers": [],
+      "replys": [],
+      "canDelete": 1
+    },
+    {
+      "momentID": 3,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "tags": [],
+        "location": "",
+        "occupation": "",
+        "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "text": "陈松铭LALALA",
+      "tranferMoment": null,
+      "createAt": 1461381901000,
+      "likeCount": 0,
+      "replyCount": 2,
+      "tranferCount": 0,
+      "likeUsers": [],
+      "replys": [
+        {
+          "replyID": 1,
+          "momentID": 3,
+          "user": {
+            "userID": 10000000,
+            "username": "陈松铭LA",
+            "signNature": "helloworld",
+            "phone": "12345672278",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "text": "陈松铭HAHAH",
+          "replyUser": {
+            "userID": 10000001,
+            "username": "",
+            "signNature": "该用户很懒，什么也没留下",
+            "phone": "12345672277",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "createAt": 1461393406000,
+          "canDelete": 1
+        },
+        {
+          "replyID": 2,
+          "momentID": 3,
+          "user": {
+            "userID": 10000000,
+            "username": "陈松铭LA",
+            "signNature": "helloworld",
+            "phone": "12345672278",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "text": "陈松铭HAHAHA",
+          "replyUser": {
+            "userID": 10000001,
+            "username": "",
+            "signNature": "该用户很懒，什么也没留下",
+            "phone": "12345672277",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "createAt": 1461393412000,
+          "canDelete": 1
+        }
+      ],
+      "canDelete": 1
+    }
+  ],
+  "start": "3",
+  "more": 0,
+  "ts": 1461516693126,
+  "status": 1
+}
+```
+
+**canDelete** 能否删除 1:可以 2:不可以
+[回到目录](#catalog)
+
+####<h4 id = "MomentListPage">动态列表<h4>
+##### url 
+ 
+ - /moment/list
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|start|long| 12311|*|首页为0|
+|count|int| 20|*|页面大小|
+
+
+##### return  
+```json  
+{
+  "moments": [
+    {
+      "momentID": 4,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "tags": [],
+        "location": "",
+        "occupation": "",
+        "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "text": "陈松铭LALALA",
+      "tranferMoment": null,
+      "createAt": 1461393484000,
+      "likeCount": 1,
+      "replyCount": 0,
+      "tranferCount": 0,
+      "likeUsers": [],
+      "replys": [],
+      "canDelete": 1
+    },
+    {
+      "momentID": 3,
+      "user": {
+        "userID": 10000000,
+        "username": "陈松铭LA",
+        "signNature": "helloworld",
+        "phone": "12345672278",
+        "tags": [],
+        "location": "",
+        "occupation": "",
+        "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+        "status": 0,
+        "rank": 0,
+        "score": 0
+      },
+      "text": "陈松铭LALALA",
+      "tranferMoment": null,
+      "createAt": 1461381901000,
+      "likeCount": 0,
+      "replyCount": 2,
+      "tranferCount": 0,
+      "likeUsers": [],
+      "replys": [
+        {
+          "replyID": 1,
+          "momentID": 3,
+          "user": {
+            "userID": 10000000,
+            "username": "陈松铭LA",
+            "signNature": "helloworld",
+            "phone": "12345672278",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "text": "陈松铭HAHAH",
+          "replyUser": {
+            "userID": 10000001,
+            "username": "",
+            "signNature": "该用户很懒，什么也没留下",
+            "phone": "12345672277",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "createAt": 1461393406000,
+          "canDelete": 1
+        },
+        {
+          "replyID": 2,
+          "momentID": 3,
+          "user": {
+            "userID": 10000000,
+            "username": "陈松铭LA",
+            "signNature": "helloworld",
+            "phone": "12345672278",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "text": "陈松铭HAHAHA",
+          "replyUser": {
+            "userID": 10000001,
+            "username": "",
+            "signNature": "该用户很懒，什么也没留下",
+            "phone": "12345672277",
+            "tags": [],
+            "location": "",
+            "occupation": "",
+            "avatar": "http://www.baidu.com/load?fileName=20160408163248q2bMAFpUK6hJYzgPT7ji.png",
+            "status": 0,
+            "rank": 0,
+            "score": 0
+          },
+          "createAt": 1461393412000,
+          "canDelete": 1
+        }
+      ],
+      "canDelete": 1
+    }
+  ],
+  "start": "3",
+  "more": 0,
+  "ts": 1461516693126,
+  "status": 1
+}
+```
+
+**canDelete** 能否删除 1:可以 2:不可以
+[回到目录](#catalog)
+
+####<h4 id = "MomentReplyCreatePage">创建动态评论<h4>
+##### url 
+ 
+ - /moment/reply/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|moment_id|long| 12311|*|转发ID|
+|reply_user_id|long| 12311| |回复用户ID|
+|content|String| 12311|*|内容|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "MomentReplyDeletePage">删除动态评论<h4>
+##### url 
+ 
+ - /moment/reply/delete
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|reply_id|long| 12311|*|回复ID|
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "MomentLikeCreatePage">动态点赞／取消点赞<h4>
+##### url 
+ 
+ - /moment/like/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|moment_id|long| 12311|*|转发ID|
+|type|int| 1|*|类型：1点赞 2取消|
+
+
+##### return  
+```json  
+{
+  "ts": 1461508348477,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+
+
+####<h4 id = "UploadPage">上传<h4>
+##### url 
+ 
+ - /moment/like/create
+ - api_version = 1
+ - status = finished
+
+##### params      
+| 参数      | 类型   |  例子     | 是否必须  | 描述 |
+| -------- |--------| -------- | -----    | -------|
+| key | String | 31319381038103018301830 | * | 用户key|
+|suffix|String| jpg|*|类型|
+
+
+##### return  
+```json  
+{
+  "url": "http://www.baidu.com/load?fileName=20160425011955s2PsOlD5rqEu1ApoIjl7.jpg",
+  "fileName": "20160425011955s2PsOlD5rqEu1ApoIjl7.jpg",
+  "ts": 1461518395453,
+  "status": 1
+}
+```
+[回到目录](#catalog)
+
+####<h4 id = "LoginAction">用户登录<h4>
+##### 请求
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21002|
+|version|int(4)| 0|
+|content|String| {"key": 30183128301} |
+
+
+##### 成功返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 22002|
+|version|int(4)| 0|
+|content|String| {} |
+
+##### 失败返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 23002|
+|version|int(4)| 0|
+|content|String| {} |
+
+
+[回到目录](#catalog)
+
+####<h4 id = "LogoutAction">用户注销登录<h4>
+##### 请求
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21006|
+|version|int(4)| 0|
+|content|String| {} |
+
+
+##### 成功返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 22006|
+|version|int(4)| 0|
+|content|String| {} |
+
+##### 失败返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 23006|
+|version|int(4)| 0|
+|content|String| {} |
+
+
+[回到目录](#catalog)
+
+
+####<h4 id = "HeartbeatAction">心跳<h4>
+##### 请求 (连续请求3次无响应视为失败)
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21003|
+|version|int(4)| 0|
+|content|String| {} |
+
+
+##### 成功返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 22003|
+|version|int(4)| 0|
+|content|String| {} |
+
+##### 失败返回值      
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 23003|
+|version|int(4)| 0|
+|content|String| {} |
+
+
+[回到目录](#catalog)
+
+####<h4 id = "UserChatAction">好友聊天<h4>
+##### 发送
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21007|
+|version|int(4)| 0|
+|content|String| {"key":30183128301,"sid":12321,"rid":12314,"create_at":10213131,"text":"陈松铭LALLA"} |
+
+
+##### 接收     
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21008|
+|version|int(4)| 0|
+|content|String| {"key":30183128301,"sid":12321,"rid":12314,"create_at":10213131,"text":"陈松铭LALLA"} |
+
+
+
+[回到目录](#catalog)
+
+####<h4 id = "GroupChatAction">群聊天<h4>
+##### 发送
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21009|
+|version|int(4)| 0|
+|content|String| {"key":30183128301,"sid":12321,"rgid":12314,"create_at":10213131,"text":"陈松铭LALLA"} |
+
+
+##### 接收     
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21010|
+|version|int(4)| 0|
+|content|String| {"key":30183128301,"sid":12321,"rgid":12314,"create_at":10213131,"text":"陈松铭LALLA"} |
+
+
+
 [回到目录](#catalog)

@@ -56,7 +56,7 @@ public class ArticleService {
 		articleInfo.likeCount = articleEntity.getLikeCount();
 		articleInfo.dislikeCount = articleEntity.getDislikeCount();
 		articleInfo.commentCount = articleEntity.getCommentCount();
-		
+		articleInfo.createAt = articleEntity.getCreateAt();
 		
 		UserInfo user = UserHelper.entity2Info(articleEntity.getUser());
 		articleInfo.user = user;
@@ -88,6 +88,7 @@ public class ArticleService {
 		articleInfo.likeCount = articleEntity.getLikeCount();
 		articleInfo.dislikeCount = articleEntity.getDislikeCount();
 		articleInfo.commentCount = articleEntity.getCommentCount();
+		articleInfo.createAt = articleEntity.getCreateAt();
 		
 		
 		UserInfo user = UserHelper.entity2Info(articleEntity.getUser());
