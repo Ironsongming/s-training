@@ -125,12 +125,12 @@ public class UserService {
 		return sessionKey;
 	}
 	
-	public static UserDetailResp userDetailResp(long userID) throws CoreException, AppException {
+	public static UserDetailResp userDetailResp(long optUserID, long targetUserID) throws CoreException, AppException {
 		UserDetailResp resp = new UserDetailResp();
 		UserInfo user = new UserInfo();
 		resp.user = user;
 
-		UserEntity userEntity = UserServiceReference.sharedService().getUserByID(userID);
+		UserEntity userEntity = UserServiceReference.sharedService().getUserByID(targetUserID);
 		if (userEntity == null) {
 			throw new AppException("用户不存在");
 		}
@@ -144,12 +144,26 @@ public class UserService {
 		user.rank = userEntity.getRank();
 		user.score = userEntity.getScore();
 		
+		user.canEdit = optUserID == targetUserID ? 1 : 0;
+		
 		return resp;
 	}
 	
-	public static ResponseStatus userUpdateDetailResp(UserParams params) throws CoreException {
-		UserServiceReference.sharedService().updateUserDetail(params);
+	public static ResponseStatus userUpdateDetailResp(long optUserID, UserParams params) throws CoreException, AppException {
+		UserServiceReference.sharedService().updateUserDetail(optUserID, params);
 		return new ResponseStatus();
 	}
 
+	public static UserListResp userRankTop20Resp() throws CoreException, AppException {
+		List<UserEntity> users = UserServiceReference.sharedService().getUserEntitiesByScoreTop20();
+			
+		UserListResp resp = new UserListResp();
+		for (UserEntity userEntity : users) {
+			resp.users.add(UserHelper.entity2Info(userEntity));
+		}
+		
+		return resp;
+	}
+	
+	
 }

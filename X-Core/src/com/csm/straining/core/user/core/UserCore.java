@@ -1,5 +1,6 @@
 package com.csm.straining.core.user.core;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
@@ -34,6 +35,25 @@ public class UserCore {
 	
 	public static boolean existUserIDs(Set<Long> userIDs) throws CoreException {
 		return UserCaps.existUserIDs(userIDs);
+	}
+	
+	public static List<UserEntity> getUsersOrderByScoreTop20() throws CoreException {
+		List<UserRank> userRanks = UserRankCaps.getUserRanksTop20();
+		
+		List<Long> preLoadUserIDs = new ArrayList<Long>();
+ 		for (UserRank userRank : userRanks) {
+			preLoadUserIDs.add(userRank.getUserID());
+		}
+ 		
+ 		List<UserEntity> userEntities = new ArrayList<UserEntity>();
+ 		Map<Long, UserEntity> userMap = getSimpleUserMapByIDs(preLoadUserIDs);
+ 		for (UserRank userRank : userRanks) {
+ 			UserEntity userEntity = userMap.get(userRank.getUserID());
+ 			userEntity.setRank(userRank.getRank());
+ 			userEntity.setScore(userRank.getScore());
+ 			userEntities.add(userEntity);
+		}
+ 		return userEntities;
 	}
 	
 	public static UserEntity createUserAccount(String phone, String password) throws CoreException, AppException {
@@ -112,8 +132,12 @@ public class UserCore {
 		}
 	}
 	
-	public static void updateUserDetail(UserParams params) throws CoreException {
+	public static void updateUserDetail(long optUserID, UserParams params) throws CoreException, AppException {
 		
+		if (optUserID != params.getUserID()) {
+			throw new AppException("你不能修改其他用户的资料");
+		}
+ 		
 		User user = new User();
 		user.setId(params.getUserID());
 		user.setUsername(params.getUsername());

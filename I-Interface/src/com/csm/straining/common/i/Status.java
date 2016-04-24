@@ -54,4 +54,11 @@ public class Status {
 		public static final byte NORMAL = 1;
 		public static final byte CANCEL = 2;
 	}
+	
+	/** -------------健身记录相关----------------- **/
+	public static interface Training {
+		public static final byte CREATE = 1;
+		public static final byte START = 2;
+		public static final byte FINISH = 3;
+	}
 }

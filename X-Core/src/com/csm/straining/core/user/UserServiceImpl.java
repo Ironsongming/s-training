@@ -7,10 +7,14 @@ import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
 import com.csm.straining.common.i.Status.User;
 import com.csm.straining.common.i.contact.entity.GroupEntity;
+import com.csm.straining.common.i.training.Entity.TrainingEntity;
+import com.csm.straining.common.i.training.params.TrainingItemParams;
+import com.csm.straining.common.i.training.params.TrainingParams;
 import com.csm.straining.common.i.user.UserService;
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.core.contact.core.ContactCore;
+import com.csm.straining.core.training.core.TrainingCore;
 import com.csm.straining.core.user.core.UserCore;
 import com.csm.straining.core.user.util.UserHelper;
 
@@ -53,11 +57,14 @@ public class UserServiceImpl implements UserService{
 	 * 更新用户资料
 	 */
 	@Override
-	public void updateUserDetail(UserParams params) throws CoreException {
-		UserCore.updateUserDetail(params);
+	public void updateUserDetail(long optUserID, UserParams params) throws CoreException, AppException {
+		UserCore.updateUserDetail(optUserID, params);
 	}
 	
-	
+	@Override
+	public List<UserEntity> getUserEntitiesByScoreTop20() throws CoreException, AppException {
+		return UserCore.getUsersOrderByScoreTop20();
+	}
 	
 	@Override
 	public void follow(long userID, long followUserID) throws AppException,
@@ -105,9 +112,40 @@ public class UserServiceImpl implements UserService{
 	}
 
 	@Override
-	public void quitGroup(long userID, long groupID) throws CoreException {
+	public void quitGroup(long userID, long groupID) throws CoreException, AppException {
 		ContactCore.quitGroup(userID, groupID);
 	}
+
+	@Override
+	public TrainingEntity createTraining(TrainingParams params) throws AppException,
+			CoreException {
+		return TrainingCore.createTraining(params);
+	}
+
+	@Override
+	public void startTraining(long userID, long trainingID) throws CoreException,
+			AppException {
+		TrainingCore.startTraining(userID, trainingID);
+	}
+
+	@Override
+	public void finishTraining(long userID, long trainingID, int consumTime, List<TrainingItemParams> trainingItems) throws CoreException,
+			AppException {
+		TrainingCore.finishTraining(userID, trainingID, consumTime, trainingItems);
+	}
+
+	@Override
+	public TrainingEntity getTrainingEntityByID(long trainingID)
+			throws CoreException, AppException {
+		return TrainingCore.getTrainingEntityByID(trainingID);
+	}
+
+	@Override
+	public List<TrainingEntity> getTrainingEntitiesByUserID(long userID,
+			long start, int count) throws CoreException, AppException {
+		return TrainingCore.getTrainingEntitiesByUserID(userID, start, count);
+	}
+	
 	
 
 }

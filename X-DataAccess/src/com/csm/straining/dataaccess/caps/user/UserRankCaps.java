@@ -1,5 +1,6 @@
 package com.csm.straining.dataaccess.caps.user;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -78,6 +79,34 @@ public class UserRankCaps {
 			return res == null || res.isEmpty() ? null : res.get(0);
 		} catch (Exception e) {
 			logger.debug("[UserRankCaps] getUserRankByUserID : ", e);
+			throw new CoreException(CoreException.DATABASE, e);
+		} finally {
+			if (dao != null) {
+				dao.close();
+			}
+		}
+		
+		
+	}
+	
+	
+	public static List<UserRank> getUserRanksTop20() throws CoreException {
+		
+		Dao<UserRankMapper> dao = null;
+		try {
+			dao = DbConfig.openSessionMaster(UserRankMapper.class);
+			
+			UserRankExample exp = new UserRankExample();
+			UserRankExample.Criteria criteria = exp.createCriteria();
+			
+			exp.setLimit(20);
+			exp.setOrderByClause("score desc");
+			
+			List<UserRank> res = dao.mapper().selectByExample(exp);
+			
+			return res == null ? new ArrayList<UserRank>() : res;
+		} catch (Exception e) {
+			logger.debug("[UserRankCaps] getUserRanksTop20 : ", e);
 			throw new CoreException(CoreException.DATABASE, e);
 		} finally {
 			if (dao != null) {

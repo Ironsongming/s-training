@@ -7,32 +7,28 @@ import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.model.info.common.ErrorStatus;
 import com.csm.straining.framework.http.page.AuthJsonViewPage;
 import com.csm.straining.user.service.UserService;
-import com.lamfire.utils.NumberUtils;
 
 
 /**
  * @author chensongming
  */
-public class UserDetailPage extends AuthJsonViewPage{
+public class UserRankPage extends AuthJsonViewPage{
 
-	private static final Logger logger = LoggerFactory.getLogger(UserDetailPage.class);
+	private static final Logger logger = LoggerFactory.getLogger(UserRankPage.class);
 	
 	@Override
 	protected Object doService() {
-		
 		try {
-			long targetUserID = NumberUtils.toLong(getParamStringRequired("target_user_id"));
-			return UserService.userDetailResp(currentUserID, targetUserID);
+			
+			return UserService.userRankTop20Resp();
+			
 		} catch (AppException e) {
-			logger.debug("[UserDetailPage] AppException :", e);
-			return new ErrorStatus(e);
+			logger.debug("[FollowPage] AppException :", e);
+			return new ErrorStatus(100);
 		} catch (Exception e) {
-			logger.debug("[UserDetailPage] Exception :", e);
+			logger.debug("[FollowPage] Exception :", e);
 			return new ErrorStatus(100);
 		}
-		
-		
-		
 	}
 
 }

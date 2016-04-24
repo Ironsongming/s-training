@@ -71,6 +71,38 @@ public class UserCaps {
 		}
 	}
 	
+	public static List<User> getUserByIDs(Set<Long> userIDs) throws CoreException {
+		
+		if (userIDs == null || userIDs.isEmpty()) {
+			return new ArrayList<User>();
+		}
+		
+		Dao<UserMapper> dao = null;
+		
+		try {
+			dao = DbConfig.openSessionMaster(UserMapper.class);
+			
+			UserExample exp = new UserExample();
+			UserExample.Criteria criteria = exp.createCriteria();
+			
+			
+			criteria.andStatusEqualTo(Status.User.NORMAL);
+			criteria.andIdIn(new ArrayList<Long>(userIDs));
+			
+			List<User> res = dao.mapper().selectByExample(exp);
+			return res == null ? new ArrayList<User>() : res;
+		} catch (Exception e) {
+			logger.debug("[UserCaps] getUserByIDs : ", e);
+			throw new CoreException(CoreException.DATABASE, e);
+		} finally {
+			if (dao != null) {
+				dao.close();
+			}
+		}
+	}
+	
+	
+	
 	public static User insertUser(User domain) throws CoreException {
 		
 		Dao<UserMapper> dao = null;

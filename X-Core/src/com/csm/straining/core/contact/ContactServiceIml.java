@@ -62,7 +62,7 @@ public class ContactServiceIml implements ContactService {
 	}
 
 	@Override
-	public void quitGroup(long userID, long groupID) throws CoreException {
+	public void quitGroup(long userID, long groupID) throws CoreException, AppException {
 		ContactCore.quitGroup(userID, groupID);
 	}
 

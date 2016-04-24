@@ -46,7 +46,7 @@ public class DbConfig implements ConfigLoadListener{
 	private Map<String, SqlSessionFactory> packageMap = new ConcurrentHashMap<String, SqlSessionFactory>();
 	private Map<Class<?>, SqlSessionFactory> clsMap = new ConcurrentHashMap<Class<?>, SqlSessionFactory>();
 	
-	private static String[] dbs = new String[] {"test", "user", "article", "contact", "moment"};
+	private static String[] dbs = new String[] {"test", "user", "article", "contact", "moment", "training"};
 	
 	private Properties props = new Properties();
 	private StoreConfigCore storeConfigCore = new StoreConfigCore();

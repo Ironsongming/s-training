@@ -222,7 +222,17 @@ public class ContactCore {
 	}
 	
 	/** --------------------群成员相关------------------- **/
-	public static void quitGroup(long userID, long groupID) throws CoreException {
+	public static void quitGroup(long userID, long groupID) throws CoreException, AppException{
+		Group group = GroupCaps.getGroupByID(groupID);
+		if (group == null) {
+			throw new AppException("该群不存在");
+		}
+		
+		GroupUser groupUser = GroupUserCaps.getGroupUser(userID, groupID);
+		if (groupUser == null) {
+			throw new AppException("你仍没加入该群，无法执行退出操作");
+		}
+		
 		GroupUserCaps.delGroupUser(userID, groupID);
 		GroupCaps.descGroupMemberCount(groupID);
 	}

@@ -163,5 +163,31 @@ public class GroupUserCaps {
 		}
 		
 	}
+	
+	public static GroupUser getGroupUser(long userID, long groupID) throws CoreException {
+		
+		Dao<GroupUserMapper> dao = null;
+		
+		try {
+			dao = DbConfig.openSessionMaster(GroupUserMapper.class);
+			
+			GroupUserExample exp = new GroupUserExample();
+			GroupUserExample.Criteria criteria = exp.createCriteria();
+			
+			criteria.andUserIDEqualTo(userID);
+			criteria.andGroupIDEqualTo(groupID);
+			criteria.andStatusEqualTo(Status.GroupUser.NORMAL);
+			List<GroupUser> res = dao.mapper().selectByExample(exp);
+			return res == null || res.isEmpty() ? new GroupUser(): res.get(0);
+		} catch (Exception e) {
+			logger.debug("[GroupUserCaps] getGroupUser : ", e);
+			throw new CoreException(CoreException.DATABASE, e);
+		} finally {
+			if (dao != null) {
+				dao.close();
+			}
+		}
+		
+	}
 
 }

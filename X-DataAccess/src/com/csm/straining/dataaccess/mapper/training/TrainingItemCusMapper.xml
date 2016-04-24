@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.csm.straining.dataaccess.mapper.training.TrainingItemCusMapper">
+  
+  	<insert id="multiInsertTrainingItem" parameterType="java.util.List">  
+	    <selectKey resultType="int" keyProperty="id" order="AFTER">  
+	        SELECT  
+	        LAST_INSERT_ID()  
+	    </selectKey>  
+	    insert into tb_training_item (trainingID, count, breakTime, createAt)   
+	    values  
+	    <foreach collection="list" item="item" index="index" separator="," >  
+	        (#{item.trainingID,jdbcType=BIGINT},#{item.count,jdbcType=INTEGER},
+	         #{item.breakTime,jdbcType=INTEGER},#{item.createAt,jdbcType=TIMESTAMP})  
+	    </foreach> 	
+    </insert>
+  
+</mapper>

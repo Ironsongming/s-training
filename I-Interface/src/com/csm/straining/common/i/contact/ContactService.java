@@ -30,6 +30,6 @@ public interface ContactService {
 	
 	List<GroupEntity> getSimpleGroupsByUserID(long userID) throws CoreException;
 	
-	void quitGroup(long userID, long groupID) throws CoreException;
+	void quitGroup(long userID, long groupID) throws CoreException, AppException;
 
 }

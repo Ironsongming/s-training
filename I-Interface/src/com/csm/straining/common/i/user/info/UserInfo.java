@@ -25,5 +25,7 @@ public class UserInfo implements Serializable{
 	// 业务字段
 	public int rank;
 	public int score; 
+	
+	public int canEdit = 0;
 
 }

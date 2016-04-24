@@ -25,7 +25,10 @@ public class UserUpdatePage extends AuthJsonViewPage{
 			
 			UserParams params = parseParams();
 			
-			return UserService.userUpdateDetailResp(params);
+			return UserService.userUpdateDetailResp(currentUserID, params);
+		} catch (AppException e) {
+			logger.debug("[UserUpdatePage] AppException :", e);
+			return new ErrorStatus(100);
 		} catch (Exception e) {
 			logger.debug("[UserUpdatePage] Exception :", e);
 			return new ErrorStatus(100);
