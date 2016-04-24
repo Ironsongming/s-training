@@ -28,5 +28,13 @@ public class RepeaterCode {
 	public interface ForceOfflinePushPID {
 		public static final int REQUEST = 11005;
 	}
+	
+	public interface UserChatSendPID {
+		public static final int REQUEST = 11006;
+	}
+	
+	public interface UserChatPushID {
+		public static final int REQUEST = 11007;
+	}
 
 }

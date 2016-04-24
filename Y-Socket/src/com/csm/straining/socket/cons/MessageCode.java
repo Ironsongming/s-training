@@ -34,6 +34,13 @@ public class MessageCode {
 		public static final int FAIL = 23006;	
 	}
 	
+	public interface UserChatPID {
+		public static final int REQUEST = 21007;
+	}
+	
+	public interface UserChatPushPID {
+		public static final int REQUEST = 21008;
+	}
 	
 
 }

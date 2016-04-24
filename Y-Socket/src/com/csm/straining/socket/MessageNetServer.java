@@ -18,7 +18,9 @@ import com.csm.straining.socket.action.HeartbeatAction;
 import com.csm.straining.socket.action.LoginAction;
 import com.csm.straining.socket.action.LogoutAction;
 import com.csm.straining.socket.action.TestAction;
+import com.csm.straining.socket.action.UserChatAction;
 import com.csm.straining.socket.action.repeater.ForceOfflineAction;
+import com.csm.straining.socket.action.repeater.UserChatPushAction;
 import com.csm.straining.socket.cons.MessageCode;
 import com.csm.straining.socket.filter.MessageFilter;
 import com.lamfire.utils.JSON;
@@ -54,6 +56,7 @@ public class MessageNetServer extends NetServer{
 
 		
 		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.ForceOfflinePushPID.REQUEST, ForceOfflineAction.class);
+		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.UserChatPushID.REQUEST, UserChatPushAction.class);
 		
 		// 登录中继服务器
 		MessageRepeaterClient.ins().setup();
@@ -87,6 +90,7 @@ public class MessageNetServer extends NetServer{
 		context.registerAction(MessageCode.LoginPID.REQUEST, LoginAction.class);
 		context.registerAction(MessageCode.LogoutPID.REQUEST, LogoutAction.class);
 		context.registerAction(MessageCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
+		context.registerAction(MessageCode.UserChatPID.REQUEST, UserChatAction.class);
 	}
 	
 	public void addUserSession(long userID, Session session) {
