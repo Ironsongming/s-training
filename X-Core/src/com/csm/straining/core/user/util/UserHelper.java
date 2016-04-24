@@ -30,6 +30,7 @@ public class UserHelper {
 		entity.setUsername(domain.getUsername());
 		entity.setPhone(domain.getPhone());
 		entity.setSignNature(domain.getSignNature());
+		entity.setStatus(domain.getStatus());
 		
 		if (StringUtils.isNotBlank(domain.getAvatar())) {
 			entity.setAvatar(ImageUtil.getLoadPath(domain.getAvatar()));
@@ -103,7 +104,7 @@ public class UserHelper {
 		info.username = entity.getUsername();
 		info.phone = entity.getPhone();
 		info.signNature = StringUtils.isBlank(entity.getSignNature()) ? "该用户很懒，什么也没留下" : entity.getSignNature();
-		info.avatar = StringUtils.isBlank(entity.getAvatar()) ? "" : ImageUtil.getLoadPath(entity.getAvatar());
+		info.avatar = entity.getAvatar();
 		info.status = entity.getStatus();
 		return info;
 	}

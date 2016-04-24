@@ -6,8 +6,8 @@ package com.csm.straining.common.model.info.common;
  */
 public class PagedResponseStatus extends ResponseStatus{
 	
-	private String start;
-	private int more;
+	private String start = "";
+	private int more = 0;
 	
 	public String getStart() {
 		return start;
