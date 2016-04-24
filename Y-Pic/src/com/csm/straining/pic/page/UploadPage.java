@@ -12,13 +12,14 @@ import com.csm.straining.common.exception.ParamVaildException;
 import com.csm.straining.common.http.page.JsonViewPage;
 import com.csm.straining.common.model.info.common.ErrorStatus;
 import com.csm.straining.common.model.info.common.ParamErrorStatus;
+import com.csm.straining.framework.http.page.AuthJsonViewPage;
 import com.csm.straining.pic.service.PicService;
 
 
 /**
  * @author chensongming
  */
-public class UploadPage extends JsonViewPage {
+public class UploadPage extends AuthJsonViewPage {
 
 	private static final Logger logger = LoggerFactory.getLogger(UploadPage.class);
 	

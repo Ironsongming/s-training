@@ -9,6 +9,7 @@ import com.csm.straining.common.http.page.JsonViewPage;
 import com.csm.straining.common.model.info.common.ErrorStatus;
 import com.csm.straining.common.model.info.common.ParamErrorStatus;
 import com.csm.straining.common.model.info.common.ResponseStatus;
+import com.csm.straining.framework.http.page.AuthJsonViewPage;
 import com.csm.straining.pic.service.PicService;
 import com.lamfire.utils.JSON;
 
