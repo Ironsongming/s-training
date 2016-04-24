@@ -36,5 +36,13 @@ public class RepeaterCode {
 	public interface UserChatPushID {
 		public static final int REQUEST = 11007;
 	}
+	
+	public interface GroupChatSendPID {
+		public static final int REQUEST = 11008;
+	}
+	
+	public interface GroupChatPushID {
+		public static final int REQUEST = 11009;
+	}
 
 }

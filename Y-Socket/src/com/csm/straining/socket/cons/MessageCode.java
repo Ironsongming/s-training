@@ -42,5 +42,13 @@ public class MessageCode {
 		public static final int REQUEST = 21008;
 	}
 	
+	public interface GroupChatPID {
+		public static final int REQUEST = 21009;
+	}
+	
+	public interface GroupChatPushPID {
+		public static final int REQUEST = 21010;
+	}
+	
 
 }

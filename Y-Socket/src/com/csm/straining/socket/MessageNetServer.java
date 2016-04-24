@@ -12,14 +12,17 @@ import com.csm.straining.common.socket.server.NetServer;
 import com.csm.straining.common.socket.server.listener.ConnectionEventListener;
 import com.csm.straining.common.socket.server.listener.SessionClosedEventListener;
 import com.csm.straining.common.socket.server.listener.SessionCreatedEventListener;
+import com.csm.straining.dataaccess.DbConfig;
 import com.csm.straining.repeater.client.MessageRepeaterClient;
 import com.csm.straining.repeater.client.RepeaterCode;
+import com.csm.straining.socket.action.GroupChatAction;
 import com.csm.straining.socket.action.HeartbeatAction;
 import com.csm.straining.socket.action.LoginAction;
 import com.csm.straining.socket.action.LogoutAction;
 import com.csm.straining.socket.action.TestAction;
 import com.csm.straining.socket.action.UserChatAction;
 import com.csm.straining.socket.action.repeater.ForceOfflineAction;
+import com.csm.straining.socket.action.repeater.GroupUserChatPushAction;
 import com.csm.straining.socket.action.repeater.UserChatPushAction;
 import com.csm.straining.socket.cons.MessageCode;
 import com.csm.straining.socket.filter.MessageFilter;
@@ -50,6 +53,9 @@ public class MessageNetServer extends NetServer{
 		
 		// 初始化缓存
 		RedisConfig.ins().init();
+		
+		// 初始化数据库
+		DbConfig.ins().init();
 				
 		// 清除userID－serverID
 		SessionServerCache.delByServerID(MessageRepeaterClient.ins().getServerID());
@@ -57,6 +63,7 @@ public class MessageNetServer extends NetServer{
 		
 		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.ForceOfflinePushPID.REQUEST, ForceOfflineAction.class);
 		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.UserChatPushID.REQUEST, UserChatPushAction.class);
+		MessageRepeaterClient.ins().registerRepeater(RepeaterCode.GroupChatPushID.REQUEST, GroupUserChatPushAction.class);
 		
 		// 登录中继服务器
 		MessageRepeaterClient.ins().setup();
@@ -91,6 +98,7 @@ public class MessageNetServer extends NetServer{
 		context.registerAction(MessageCode.LogoutPID.REQUEST, LogoutAction.class);
 		context.registerAction(MessageCode.HeartbeatPID.REQUEST, HeartbeatAction.class);
 		context.registerAction(MessageCode.UserChatPID.REQUEST, UserChatAction.class);
+		context.registerAction(MessageCode.GroupChatPID.REQUEST, GroupChatAction.class);
 	}
 	
 	public void addUserSession(long userID, Session session) {

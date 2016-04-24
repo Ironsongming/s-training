@@ -14,6 +14,7 @@ import com.csm.straining.repeater.action.HeartbeatAction;
 import com.csm.straining.repeater.action.LoginAction;
 import com.csm.straining.repeater.action.TestAction;
 import com.csm.straining.repeater.action.message.RepeaterForceOfflineAction;
+import com.csm.straining.repeater.action.message.RepeaterGroupUserChatTransmitAction;
 import com.csm.straining.repeater.action.message.RepeaterUserChatTransmitAction;
 import com.csm.straining.repeater.client.RepeaterCode;
 
@@ -63,6 +64,7 @@ public class RepeaterNetServer extends NetServer{
 		context.registerAction(RepeaterCode.LoginPID.REQUEST, LoginAction.class);
 		context.registerAction(RepeaterCode.ForceOfflineSendPID.REQUEST, RepeaterForceOfflineAction.class);
 		context.registerAction(RepeaterCode.UserChatSendPID.REQUEST, RepeaterUserChatTransmitAction.class);
+		context.registerAction(RepeaterCode.GroupChatSendPID.REQUEST, RepeaterGroupUserChatTransmitAction.class);
 	}
 	
 	public void addMessageSession(int clientID, Session session) {

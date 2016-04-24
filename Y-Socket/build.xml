@@ -35,6 +35,7 @@
 			
 			<zipfileset dir="." includes="${ant.project.name}.jar" prefix="lib"/>
 			
+			<zipfileset dir="../I-Interface" includes="i-interfacecsm.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common" includes="x-common.jar" prefix="lib" />
 			<zipfileset dir="../X-Common/lib" includes="jackson-all-1.7.1.jar" prefix="lib" />
 			<zipfileset dir="../X-Common/lib" includes="lamfire-1.1.jar" prefix="lib" />
@@ -48,11 +49,15 @@
 			
 			<!-- redis -->
 			<zipfileset dir="../X-Cache" includes="x-cache.jar" prefix="lib"/>
-			
 			<zipfileset dir="../X-Common/lib" includes="jedis_2.5.2.jar" prefix="lib"/>
 			<zipfileset dir="../X-Common/lib" includes="commons-pool2-2.2.jar" prefix="lib"/>
 			
-						
+			<!-- mysql -->
+			<zipfileset dir="../X-DataAccess" includes="x-dataaccess.jar" prefix="lib"/>
+			<zipfileset dir="../X-Common/lib" includes="mybatis-3.2.1.jar" prefix="lib"/>
+			<zipfileset dir="../X-Common/lib" includes="mysql-connector-java-5.1.22-bin.jar" prefix="lib"/>	
+
+			
 		</tar>
 	</target>
 </project>
