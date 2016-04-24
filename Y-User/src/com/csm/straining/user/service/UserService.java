@@ -139,7 +139,7 @@ public class UserService {
 		user.username = userEntity.getUsername();
 		user.phone = userEntity.getPhone();
 		user.signNature = StringUtils.isBlank(userEntity.getSignNature()) ? "该用户很懒，什么也没留下" : userEntity.getSignNature();
-		user.avatar = StringUtils.isBlank(userEntity.getAvatar()) ? "" : ImageUtil.getLoadPath(userEntity.getAvatar());
+		user.avatar = userEntity.getAvatar();
 		user.status = userEntity.getStatus();
 		user.rank = userEntity.getRank();
 		user.score = userEntity.getScore();
