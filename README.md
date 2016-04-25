@@ -100,6 +100,7 @@
 3. [心跳](#HeartbeatAction)
 4. [好友聊天](#UserChatAction)
 5. [群聊](#GroupChatAction)
+6. [强制下线](#ForceOfflineAction)
 
 ####<h4 id = "UserCreatePage">用户手机注册接口<h4>
 ##### url 
@@ -2017,6 +2018,19 @@
 | messageID | int(4) | 21010|
 |version|int(4)| 0|
 |content|String| {"key":30183128301,"sid":12321,"rgid":12314,"create_at":10213131,"text":"陈松铭LALLA"} |
+
+
+
+[回到目录](#catalog)
+
+####<h4 id = "ForceOfflineAction">强制下线<h4>
+
+##### 接收     
+| 参数      | 类型   |  取值     |
+| -------- |--------| -------- |
+| messageID | int(4) | 21005|
+|version|int(4)| 0|
+|content|String| {}|
 
 
 
