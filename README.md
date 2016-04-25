@@ -1882,7 +1882,7 @@
 ####<h4 id = "UploadPage">上传<h4>
 ##### url 
  
- - /moment/like/create
+ - /upload
  - api_version = 1
  - status = finished
 
