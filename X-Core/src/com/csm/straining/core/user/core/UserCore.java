@@ -11,6 +11,7 @@ import org.slf4j.LoggerFactory;
 
 import com.csm.straining.common.exception.AppException;
 import com.csm.straining.common.exception.CoreException;
+import com.csm.straining.common.i.Status;
 import com.csm.straining.common.i.user.entity.UserEntity;
 import com.csm.straining.common.i.user.params.UserParams;
 import com.csm.straining.core.user.util.UserHelper;
@@ -80,6 +81,7 @@ public class UserCore {
 		domain.setPhone(phone);
 		domain.setPassword(MD5.sign(password));
 		domain.setCreateAt(new Date());
+		domain.setStatus(Status.User.NORMAL);
 		
 		return UserHelper.domain2Entity(UserCaps.insertUser(domain));
 	}
