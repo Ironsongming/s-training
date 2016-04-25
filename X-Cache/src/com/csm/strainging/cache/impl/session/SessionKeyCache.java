@@ -9,7 +9,7 @@ import com.lamfire.utils.StringUtils;
  */
 public class SessionKeyCache extends SessionCacheSupport {
 	
-	private static final int EXPIRE = 60 * 60 * 3; // 3 hour
+	private static final int EXPIRE = 60 * 60 * 30 * 24; // 30d
 	
 	public static void setAndExpire(String sessionKey, long userID) {
 		getCache().setex(getKey(sessionKey), Long.toString(userID), EXPIRE);
