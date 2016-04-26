@@ -9,6 +9,7 @@ import com.csm.straining.common.model.info.common.ErrorStatus;
 import com.csm.straining.framework.http.page.AuthJsonViewPage;
 import com.csm.straining.user.refer.UserServiceReference;
 import com.csm.straining.user.service.UserService;
+import com.lamfire.utils.StringUtils;
 
 
 /**
@@ -44,11 +45,23 @@ public class UserUpdatePage extends AuthJsonViewPage{
 		String signNature = getParamString("sign_nature");
 		String avatar = getParamString("avatar");
 		
-		params.setUserID(currentUserID);
-		params.setUsername(username);
-		params.setPassword(password);
-		params.setSignNature(signNature);
-		params.setAvatar(avatar);
+		params.setUserID(currentUserID);			
+		
+		if (StringUtils.isNotBlank(username)) {
+			params.setUsername(username);			
+		}
+		
+		if (StringUtils.isNotBlank(password)) {
+			params.setPassword(password);
+		}
+		
+		if (StringUtils.isNotBlank(signNature)) {
+			params.setSignNature(signNature);			
+		}
+		
+		if (StringUtils.isNotBlank(avatar)) {
+			params.setAvatar(avatar);
+		}
 		
 		return params;
 	}
