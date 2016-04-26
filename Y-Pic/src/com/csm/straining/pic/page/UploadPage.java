@@ -36,11 +36,11 @@ public class UploadPage extends AuthJsonViewPage {
 				e.printStackTrace();
 			}
 			
-			if (is == null) {
-				throw new ParamVaildException(101, "file");
-			}
-			
-			return PicService.save2(is, suffix);
+//			if (is == null) {
+//				throw new ParamVaildException(101, "file");
+//			}
+//			
+			return PicService.save3(req, suffix);
 			
 		} catch (ParamVaildException e) {
 			logger.debug("[UploadPage ParamVaildException]", e);

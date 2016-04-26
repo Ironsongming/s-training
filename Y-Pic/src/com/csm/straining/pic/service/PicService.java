@@ -10,12 +10,22 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.io.PrintWriter;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.Random;
 
 import javax.imageio.ImageIO;
+import javax.servlet.http.HttpServletRequest;
 
+import org.apache.commons.fileupload.FileItem;
+import org.apache.commons.fileupload.FileItemFactory;
+import org.apache.commons.fileupload.disk.DiskFileItemFactory;
+import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -114,6 +124,55 @@ public class PicService {
 		return resp;
  		
 	}
+	
+	public synchronized static UploadResp save3(HttpServletRequest request, String suffix) throws AppException {
+		
+		UploadResp resp = new UploadResp();
+		String fid = getFID();
+		
+          
+        FileItemFactory factory = new DiskFileItemFactory();  
+        ServletFileUpload upload = new ServletFileUpload(factory);  
+        List<FileItem> items = new ArrayList<FileItem>();  
+        try {  
+            items = upload.parseRequest(request);  
+            // 得到所有的文件  
+            Iterator<FileItem> it = items.iterator();  
+            while (it.hasNext()) {  
+                FileItem fItem = (FileItem) it.next();  
+                if (fItem.isFormField()) { 
+                	
+                } else { 
+                	logger.debug("[PicService] save begin");
+                    String fileFieldName = fItem.getFieldName();
+                    if(fileFieldName != null && "file".equals(fileFieldName)) {  
+                        String filePath = ImageUtil.getImgPath() + "/" + fid + "." + suffix; 
+
+                        InputStream is = fItem.getInputStream();  
+                        FileOutputStream fos = new FileOutputStream(filePath);  
+                        byte[] buffer = new byte[1024];  
+                        while (is.read(buffer) > 0) {  
+                            fos.write(buffer, 0, buffer.length);  
+                        }  
+                        fos.flush();  
+                        fos.close();  
+                        
+                        logger.debug("[PicService] save finished : ");
+                    }  
+                    
+                    resp.url = ImageUtil.getLoadPath(fid + "." + suffix);
+        			resp.fileName = fid + "." + suffix;
+                }  
+            }  
+        } catch (Exception e) {  
+        	logger.debug("[PicService] save3 : " + e);
+			throw new AppException("上存图片失败");
+        }  
+		
+		return resp;
+ 		
+	}
+	
 	
 	private static String getFID() {
 		return new SimpleDateFormat("yyyyMMddHHmmss").format(new Date()).toString() + getNonceStr();

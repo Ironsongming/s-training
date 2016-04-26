@@ -1,6 +1,7 @@
 package com.csm.straining.pic.page;
 
 
+import org.eclipse.jetty.http.HttpHeaders;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -27,10 +28,11 @@ public class LoadPage extends JsonViewPage {
 		try {
 			String fileName = getParamStringRequired("fileName");
 			
-			resp.setCharacterEncoding("UTF-8");  
-			resp.setContentType("application/octet-stream");
-			resp.setHeader("Content-disposition","attachment;filename=\"" + fileName + "\""); 
+//			resp.setCharacterEncoding("UTF-8");  
+//			resp.setContentType("application/octet-stream");
+//			resp.setHeader("Content-disposition","attachment;filename=\"" + fileName + "\""); 
 			
+			resp.setHeader(HttpHeaders.CONTENT_TYPE, "image/jpeg");
 			PicService.load(fileName, resp.getOutputStream());
 			
 			return new ResponseStatus();
