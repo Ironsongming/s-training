@@ -78,7 +78,7 @@
 7. [删除文章评论](#ArticleCommentDeletePage)
 8. [点赞／灭文章](#ArticleLikeCreatePage)
 
-####<h4 id = "training_api_list">动态相关接口列表<h4>
+####<h4 id = "moment_api_list">动态相关接口列表<h4>
 1. [创建动态](#MomentCreatePage)
 2. [转发动态](#MomentTransferPage)
 3. [删除动态](#MomentDeletePage)
@@ -899,7 +899,7 @@
 ####<h4 id = "TrainingPreCreatePage">创建健身任务预加载接口<h4>
 ##### url 
  
- - /training/start
+ - /training/pre/create
  - api_version = 1
  - status = finished
 
@@ -953,7 +953,7 @@
 ####<h4 id = "TrainingStartPage">开启健身任务接口<h4>
 ##### url 
  
- - /training/pre/create
+ - /training/start
  - api_version = 1
  - status = finished
 
