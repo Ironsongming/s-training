@@ -1203,7 +1203,7 @@
 ####<h4 id = "ArticleUserListPage">用户文章列表<h4>
 ##### url 
  
- - /article/list/recommed
+ - /article/list/user
  - api_version = 1
  - status = finished
 
