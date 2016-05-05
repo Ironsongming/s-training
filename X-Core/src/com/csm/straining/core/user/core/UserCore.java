@@ -79,6 +79,7 @@ public class UserCore {
 		
 		User domain = new User();
 		domain.setPhone(phone);
+		domain.setUsername("用户-" + phone);
 		domain.setPassword(MD5.sign(password));
 		domain.setCreateAt(new Date());
 		domain.setStatus(Status.User.NORMAL);
