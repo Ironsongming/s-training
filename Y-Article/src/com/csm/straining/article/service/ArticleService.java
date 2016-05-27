@@ -143,7 +143,8 @@ public class ArticleService {
 	public static ArticleListResp articleRecommendListResp(long optUserID, long start, int count) throws AppException, CoreException{
 		ArticleListResp resp = new ArticleListResp();
 		
-		List<ArticleEntity> articleEntities = ArticleServiceReference.sharedService().getArticlesByUserID(optUserID, start, count + 1);
+//		List<ArticleEntity> articleEntities = ArticleServiceReference.sharedService().getArticlesByUserID(optUserID, start, count + 1);
+		List<ArticleEntity> articleEntities = ArticleServiceReference.sharedService().getRecommendArticles(start, count + 1);
 		
 		for (ArticleEntity articleEntity : articleEntities) {
 			resp.articles.add(parseArticleListItemInfo(articleEntity, optUserID));
